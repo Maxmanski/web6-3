@@ -1,1 +1,1 @@
-test=Hello, how are you today?
+test=Hello {0}, how are you today?

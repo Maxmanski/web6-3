@@ -12,8 +12,8 @@ import java.util.Formatter;
 public class Application extends Controller {
 
     public static Result index() {
-        String text = Messages.get("test");
-        return ok(index.render(text));
+        //Lang.set("de");
+        return ok(index.render(Messages.get("test", "Nicole")));
     }
 
 }
