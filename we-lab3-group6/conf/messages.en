@@ -1,5 +1,5 @@
 test=Hello {0}, how are you today?
-labe_jeopardy=Jeopardy!
+label_jeopardy=Jeopardy!
 label_username=Username
 label_password=Password
 label_login=Login
@@ -36,4 +36,5 @@ label_winner=winner
 label_titleWinnerNotification=winner notification
 label_titleQuestionSelection=Question selection
 label_titleQuestion=Answer the Question
+label_titleRegistration=Registration
 message_categoryForValue= {0} für {1}

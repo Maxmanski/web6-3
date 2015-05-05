@@ -12,8 +12,7 @@ import java.util.Formatter;
 public class Evaluation extends Controller {
 
     public static Result index() {
-        //Lang.set("de");
-        return ok(index.render("Evaluation"));
+        return ok(index.render(Messages.get("label_titleWinnerNotification")));
     }
 
 }

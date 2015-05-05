@@ -9,7 +9,7 @@ GET     /                           controllers.Authentication.index()
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
 
-GET     /registration                     controllers.Registration.index()
+GET     /registration               controllers.Registration.index()
 POST    /overview                   controllers.Overview.index()
 POST    /question                   controllers.Question.index()
 GET     /evaluation                 controllers.Evaluation.index()

@@ -12,8 +12,7 @@ import java.util.Formatter;
 public class Overview extends Controller {
 
     public static Result index() {
-        //Lang.set("de");
-        return ok(index.render("Overview"));
+        return ok(index.render(Messages.get("label_titleQuestionSelection")));
     }
 
 }

@@ -12,8 +12,7 @@ import java.util.Formatter;
 public class Registration extends Controller {
 
     public static Result index() {
-        //Lang.set("de");
-        return ok(index.render("Registration"));
+        return ok(index.render(Messages.get("label_titleRegistration")));
     }
 
 }

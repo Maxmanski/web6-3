@@ -12,8 +12,7 @@ import java.util.Formatter;
 public class Authentication extends Controller {
 
     public static Result index() {
-        //Lang.set("de");
-        return ok(index.render("Login/Authentication"));
+        return ok(index.render(Messages.get("label_login")));
     }
 
 }

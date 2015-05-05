@@ -1,5 +1,5 @@
 test=Hallo {0}, wie geht es dir heute?
-labe_jeopardy=Jeopardy!
+label_jeopardy=Jeopardy!
 label_username=Benutzername
 label_password=Passwort
 label_login=Anmelden
@@ -33,7 +33,8 @@ message_mandatoryFields=Mit "*" gekennzeichnete Felder sind Pflichtfelder
 
 label_newGame=Neues Spiel
 label_winner=Gewinner
-label_title=Gewinnanzeige
+label_titleWinnerNotification=Gewinnanzeige
 label_titleQuestionSelection=Fragenauswahl
 label_titleQuestion=Fragenbeantwortung
+label_titleRegistration=Registration
 message_categoryForValue= {0} für {1}
