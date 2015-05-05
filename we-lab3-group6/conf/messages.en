@@ -1,1 +1,39 @@
 test=Hello {0}, how are you today?
+labe_jeopardy=Jeopardy!
+label_username=Username
+label_password=Password
+label_login=Login
+label_loginEn=Login
+label_notRegistered=Not registered?
+label_toRegistration=To the registration
+label_copyright=&copy; 2015 BIG Jeopardy
+
+label_logout=Logout
+message_rightAnswerUser=You have answered correctly
+message_wrongAnswerUser=You have answered wrongly
+message_rightAnswerOpponent={0} has answered correctly
+message_wrongAnswerOpponent={0} has answered wrongly
+message_aiQuestion={0} has chosen {1} for  {2}.
+message_user={0} (You)
+label_numQuestions=Questions
+label_choose=choose
+message_lastGame=Last game {0} MESZ
+
+label_personalData=Personal data
+label_firstname=first name
+label_lastname=last name
+label_birthday=birthday
+label_gender=Gender
+label_male=male
+label_female=female
+label_userData=User data
+label_avatar=Avatar
+label_register=Register
+message_mandatoryFields=Fields marked with "*" are mandatory
+
+label_newGame=New game
+label_winner=winner
+label_titleWinnerNotification=winner notification
+label_titleQuestionSelection=Question selection
+label_titleQuestion=Answer the Question
+message_categoryForValue= {0} für {1}
