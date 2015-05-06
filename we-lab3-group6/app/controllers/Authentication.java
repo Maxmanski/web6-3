@@ -11,7 +11,7 @@ import java.util.Formatter;
 
 public class Authentication extends Controller {
 
-    public static Result index() {
+    public static Result authentication() {
         return ok(index.render(Messages.get("label_login")));
     }
 

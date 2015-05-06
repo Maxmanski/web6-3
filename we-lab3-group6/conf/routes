@@ -3,13 +3,14 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Authentication.index()
+GET     /                           controllers.Authentication.authentication()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
 
-GET     /registration               controllers.Registration.index()
-POST    /overview                   controllers.Overview.index()
-POST    /question                   controllers.Question.index()
-GET     /evaluation                 controllers.Evaluation.index()
+GET     /registration               controllers.Registration.registration()
+GET     /overview                   controllers.Overview.jeopardy()
+POST    /overview                   controllers.Overview.jeopardy()
+POST    /question                   controllers.Question.question()
+GET     /evaluation                 controllers.Evaluation.winner()
