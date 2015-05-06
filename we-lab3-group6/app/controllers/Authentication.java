@@ -12,7 +12,7 @@ import java.util.Formatter;
 public class Authentication extends Controller {
 
     public static Result authentication() {
-        return ok(index.render(Messages.get("label_login")));
+        return ok(authentication.render(Messages.get("label_login")));
     }
 
 }

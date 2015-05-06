@@ -10,7 +10,11 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
 
 GET     /registration               controllers.Registration.registration()
-GET     /overview                   controllers.Overview.jeopardy()
 POST    /overview                   controllers.Overview.jeopardy()
 POST    /question                   controllers.Question.question()
 GET     /evaluation                 controllers.Evaluation.winner()
+
+
+# routes zum testen, NACHER LOESCHEN
+GET     /overview                   controllers.Overview.jeopardy()
+GET    /question                    controllers.Question.question()
