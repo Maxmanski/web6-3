@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="jeopardy">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/we-lab3-group6/lib/jeopardy.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/we-lab3-group6/lib/jeopardy.jar!/" />
+    </SOURCES>
+  </library>
+</component>
