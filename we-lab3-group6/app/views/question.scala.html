@@ -24,7 +24,7 @@
             <h2 id="gameinfoinfoheading" class="accessibility">Spielinformationen</h2>
             <section id="firstplayer" class="playerinfo leader" aria-labelledby="firstplayerheading">
                 <h3 id="firstplayerheading" class="accessibility">Führender Spieler</h3>
-                <img class="avatar" src="img/avatar/black-widow_head.png" alt="Spieler-Avatar Black Widow" />
+                <img class="avatar" src="@routes.Assets.at("images/avatar/black-widow_head.png")" alt="Spieler-Avatar Black Widow" />
                 <table>
                     <tr>
                         <th class="accessibility">Spielername</th>
@@ -38,7 +38,7 @@
             </section>
             <section id="secondplayer" class="playerinfo" aria-labelledby="secondplayerheading">
                 <h3 id="secondplayerheading" class="accessibility">Zweiter Spieler</h3>
-                <img class="avatar" src="img/avatar/deadpool_head.png" alt="Spieler-Avatar Deadpool" />
+                <img class="avatar" src="@routes.Assets.at("images/avatar/deadpool_head.png")" alt="Spieler-Avatar Deadpool" />
                 <table>
                     <tr>
                         <th class="accessibility">Spielername</th>
@@ -55,7 +55,7 @@
 
             <!-- Question -->
         <section id="question" aria-labelledby="questionheading">
-            <form id="questionform" action="jeopardy.xhtml" method="get">
+            <form id="questionform" action="/evaluation" method="get">
                 <h2 id="questionheading" class="accessibility">Frage</h2>
                 <p id="questiontype">TUWIEN für € 300</p>
                 <p id="questiontext">Diese Lehrveranstaltungen bilden das Modul EWA.</p>
