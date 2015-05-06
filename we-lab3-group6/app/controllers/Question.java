@@ -10,7 +10,7 @@ import play.i18n.Messages;
 public class Question extends Controller {
 
     public static Result question() {
-        return ok(index.render(Messages.get("label_titleQuestion")));
+        return ok(question.render(Messages.get("label_titleQuestion")));
     }
 
 }

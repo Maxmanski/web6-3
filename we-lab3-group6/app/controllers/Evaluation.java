@@ -12,7 +12,7 @@ import java.util.Formatter;
 public class Evaluation extends Controller {
 
     public static Result winner() {
-        return ok(index.render(Messages.get("label_titleWinnerNotification")));
+        return ok(winner.render(Messages.get("label_titleWinnerNotification")));
     }
 
 }

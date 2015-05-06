@@ -24,7 +24,7 @@ public class Overview extends Controller {
         //SimpleJeopardyGame game = factory.createGame(user);
         //SimplePlayer human = game.getHumanPlayer();
 
-        return ok(index.render(Messages.get("label_titleQuestionSelection")));
+        return ok(jeopardy.render(Messages.get("label_titleQuestionSelection")));
     }
 
 }
