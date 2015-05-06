@@ -1,7 +1,7 @@
 @(message: String)
 
 @main("") {
-    <a class="accessibility" href="#winner">Zur Gewinnanzeige springen</a>
+    <a class="accessibility" href="/evaluation">Zur Gewinnanzeige springen</a>
     <!-- Header -->
     <header role="banner" aria-labelledby="bannerheading">
         <h1 id="bannerheading">
@@ -54,7 +54,7 @@
         </section>
         <section id="newgame" aria-labelledby="newgameheading">
             <h2 id="newgameheading" class="accessibility">Neues Spiel</h2>
-            <form action="jeopardy.xhtml" method="post">
+            <form action="/overview" method="post">
                 <input class="clickable orangelink contentlink" id="new_game" type="submit" name="restart" value="Neues Spiel" />
             </form>
         </section>
