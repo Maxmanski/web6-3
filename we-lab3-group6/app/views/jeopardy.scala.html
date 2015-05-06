@@ -1,11 +1,12 @@
 @(message: String)
+@import play.i18n._
 
 @main("") {
     <a class="accessibility" href="#question-selection">Zur Fragenauswahl springen</a>
     <!-- Header -->
     <header role="banner" aria-labelledby="bannerheading">
         <h1 id="bannerheading">
-            <span class="accessibility">Business Informatics Group </span><span class="gametitle">Jeopardy!</span>
+            <span class="accessibility">Business Informatics Group </span><span class="gametitle">@Messages.get("label_jeopardy")</span>
         </h1>
     </header>
 
@@ -13,7 +14,7 @@
     <nav role="navigation" aria-labelledby="navheading">
         <h2 id="navheading" class="accessibility">Navigation</h2>
         <ul>
-            <li><a class="orangelink navigationlink" id="logoutlink" title="Klicke hier um dich abzumelden" href="#" accesskey="l">Abmelden</a></li>
+            <li><a class="orangelink navigationlink" id="logoutlink" title="Klicke hier um dich abzumelden" href="#" accesskey="l">@Messages.get("label_logout")</a></li>
         </ul>
     </nav>
 
@@ -27,11 +28,11 @@
                 <img class="avatar" src="@routes.Assets.at("images/avatar/black-widow_head.png")" alt="Spieler-Avatar Black Widow" />
                 <table>
                     <tr>
-                        <th class="accessibility">Spielername</th>
+                        <th class="accessibility">@Messages.get("label_playerName")</th>
                         <td class="playername">Black Widow (Du)</td>
                     </tr>
                     <tr>
-                        <th class="accessibility">Spielerpunkte</th>
+                        <th class="accessibility">@Messages.get("message_playerScore")</th>
                         <td class="playerpoints">2000 €</td>
                     </tr>
                 </table>
@@ -41,27 +42,27 @@
                 <img class="avatar" src="@routes.Assets.at("images/avatar/deadpool_head.png")" alt="Spieler-Avatar Deadpool" />
                 <table>
                     <tr>
-                        <th class="accessibility">Spielername</th>
+                        <th class="accessibility">@Messages.get("label_playerName")</th>
                         <td class="playername">Deadpool</td>
                     </tr>
                     <tr>
-                        <th class="accessibility">Spielerpunkte</th>
+                        <th class="accessibility">@Messages.get("label_playerScore")</th>
                         <td class="playerpoints">400 €</td>
                     </tr>
                 </table>
             </section>
-            <p id="round">Fragen: 2 / 10</p>
+            <p id="round">@Messages.get("label_numQuestions"): 2 / 10</p>
         </section>
 
             <!-- Question -->
         <section id="question-selection" aria-labelledby="questionheading">
             <h2 id="questionheading" class="black accessibility">Jeopardy</h2>
-            <p class="user-info positive-change">Du hast richtig geantwortet: +1000 €</p>
-            <p class="user-info negative-change">Deadpool hat falsch geantwortet: -500 €</p>
-            <p class="user-info">Deadpool hat TUWIEN für € 1000 gewählt.</p>
+            <p class="user-info positive-change">@Messages.get("message_rightAnswerUser"): +1000 €</p>
+            <p class="user-info negative-change">@Messages.get("message_wrongAnswerOpponent", "Deadpool"): -500 €</p>
+            <p class="user-info">@Messages.get("message_aiQuestion", "Deadpool", "TUWIEN", "€ 1000")</p>
             <form id="questionform" action="/question" method="post">
                 <fieldset>
-                    <legend class="accessibility">Fragenauswahl</legend>
+                    <legend class="accessibility">@Messages.get("label_titleQuestionSelection")</legend>
                     <section class="questioncategory" aria-labelledby="tvheading">
                         <h3 id="tvheading" class="tile category-title"><span class="accessibility">Kategorie: </span>TV</h3>
                         <ol class="category_questions">
@@ -117,7 +118,7 @@
 
         <section id="lastgame" aria-labelledby="lastgameheading">
             <h2 id="lastgameheading" class="accessibility">Letztes Spielinfo</h2>
-            <p>Letztes Spiel: Nie</p>
+            <p>@Messages.get("message_lastGame", "-")</p>
         </section>
         </div>
 

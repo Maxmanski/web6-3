@@ -9,6 +9,8 @@ label_toRegistration=To the registration
 label_copyright=&copy; 2015 BIG Jeopardy
 
 label_logout=Logout
+label_playerName=player name
+label_playerScore=player score
 message_rightAnswerUser=You have answered correctly
 message_wrongAnswerUser=You have answered wrongly
 message_rightAnswerOpponent={0} has answered correctly

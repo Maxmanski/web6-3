@@ -9,6 +9,8 @@ label_toRegistration=Zur Registrierung
 label_copyright=&copy; 2015 BIG Jeopardy
 
 label_logout=Abmelden
+label_playerName=Spielername
+label_playerScore=Spielerpunkte
 message_rightAnswerUser=Du hast richtig geantwortet
 message_wrongAnswerUser=Du hast falsch geantwortet
 message_rightAnswerOpponent={0} hat richtig geantwortet
@@ -17,7 +19,7 @@ message_aiQuestion={0}  hat {1} für  {2} gewählt.
 message_user={0} (Du)
 label_numQuestions=Fragen
 label_choose=wählen
-message_lastGame=LetztesSpiel {0} MESZ
+message_lastGame=Letztes Spiel {0} MESZ
 
 label_personalData=Persönliche Daten
 label_firstname=Vorname
