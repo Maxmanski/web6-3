@@ -11,7 +11,7 @@ import java.util.Formatter;
 
 public class Registration extends Controller {
 
-    public static Result index() {
+    public static Result registration() {
         return ok(index.render(Messages.get("label_titleRegistration")));
     }
 

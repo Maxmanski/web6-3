@@ -14,16 +14,15 @@ import java.util.ArrayList;
 
 public class Overview extends Controller {
 
-    public static Result index() {
+    public static Result jeopardy() {
         String filepath ="/conf/data.de.json";
         JeopardyFactory factory = new PlayJeopardyFactory(filepath);
         QuestionDataProvider provider =factory.createQuestionDataProvider();
-        List<Category> categories = provider.getCategoryData(), tmp = new ArrayList<Category>();
+        //List<Category> categories = provider.getCategoryData(), tmp = new ArrayList<Category>();
 
-        User user = factory.createUser();
-        JeopardyGame game = factory.createGame(user);
-        Player human = game.getHumanPlayer();
-        
+        //SimpleUser user = factory.createUser();
+        //SimpleJeopardyGame game = factory.createGame(user);
+        //SimplePlayer human = game.getHumanPlayer();
 
         return ok(index.render(Messages.get("label_titleQuestionSelection")));
     }
