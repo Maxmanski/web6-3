@@ -59,7 +59,7 @@
             <p class="user-info positive-change">Du hast richtig geantwortet: +1000 €</p>
             <p class="user-info negative-change">Deadpool hat falsch geantwortet: -500 €</p>
             <p class="user-info">Deadpool hat TUWIEN für € 1000 gewählt.</p>
-            <form id="questionform" action="question.xhtml" method="post">
+            <form id="questionform" action="/question" method="post">
                 <fieldset>
                     <legend class="accessibility">Fragenauswahl</legend>
                     <section class="questioncategory" aria-labelledby="tvheading">
@@ -120,8 +120,26 @@
             <p>Letztes Spiel: Nie</p>
         </section>
         </div>
-    <!-- footer -->
-    <footer role="contentinfo">© 2015 BIG Jeopardy!</footer>
 
+    <script type="text/javascript">
+    //<![CDATA[
+
+    // initialize time
+    $(document).ready(function() {
+        // set last game
+        if(supportsLocalStorage()) {
+        var lastGameMillis = parseInt(localStorage['lastGame'])
+            if(!isNaN(parseInt(localStorage['lastGame']))){
+                var lastGame = new Date(lastGameMillis);
+                $("#lastgame p").replaceWith('<p>Letztes Spiel: <time datetime="'
+                + lastGame.toUTCString()
+                + '">'
+                + lastGame.toLocaleString()
+                + '</time></p>')
+            }
+        }
+    });
+    //]]>
+    </script>
 
 }
