@@ -3,18 +3,18 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Authentication.authentication()
+GET         /                    controllers.Authentication.authentication()
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.at(path="/public", file)
+GET         /assets/*file        controllers.Assets.at(path="/public", file)
 
 
-GET     /registration               controllers.Registration.registration()
-POST    /overview                   controllers.Overview.jeopardy()
-POST    /question                   controllers.Question.question()
-GET     /evaluation                 controllers.Evaluation.winner()
-
+GET         /registration        controllers.Registration.registration()
+POST        /register        controllers.Registration.register()
+POST        /overview            controllers.Overview.jeopardy()
+POST        /question            controllers.Question.question()
+GET         /evaluation          controllers.Evaluation.winner()
 
 # routes zum testen, NACHER LOESCHEN
-GET     /overview                   controllers.Overview.jeopardy()
-GET     /question                    controllers.Question.question()
+GET         /overview            controllers.Overview.jeopardy()
+GET         /question            controllers.Question.question()
