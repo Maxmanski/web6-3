@@ -1,6 +1,6 @@
 package controllers;
 
-import model.User;
+import models.User;
 import play.data.DynamicForm;
 import play.data.Form;
 import play.i18n.Messages;
@@ -11,7 +11,7 @@ import views.html.registration;
 public class Registration extends Controller {
 
     public static Result registration() {
-        Form<model.User> userForm = Form.form(model.User.class);
+        Form<models.User> userForm = Form.form(models.User.class);
         return ok(registration.render(Messages.get("label_titleRegistration"), userForm));
     }
 
@@ -29,6 +29,12 @@ public class Registration extends Controller {
         username = form.get("username");
         password = form.get("password");
 
+        if(sex.equals("m")){
+            sex = "male";
+        }else{
+            sex = "female";
+        }
+
         boolean valid = true;
 
         if((username == null) || (username.length() < 4) || (username.length() > 8)){
@@ -42,6 +48,11 @@ public class Registration extends Controller {
         }
 
         if(valid){
+            User usr = new User(username, firstname, lastname, birthday, User.Gender.valueOf(sex), avatar, password);
+            usr.save();
+            System.out.println(usr);
+            User found = User.find.where().eq("username", username).findUnique();
+            System.out.println(found);
             return redirect(controllers.routes.Authentication.authentication());
 
         }else{

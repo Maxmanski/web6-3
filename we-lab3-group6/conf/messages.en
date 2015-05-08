@@ -34,6 +34,7 @@ label_register=Register
 message_fieldRestrictionLengthUsername=The username must have between 4 and 8 characters.
 message_fieldRestrictionLengthPassword=The password must have between 4 and 8 characters.
 message_mandatoryFields=Fields marked with "*" are mandatory
+error_birthday=The birthdate must be specified in the format DD.MM.YYYY
 
 label_newGame=New game
 label_winner=winner

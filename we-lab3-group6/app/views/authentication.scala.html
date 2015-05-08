@@ -1,4 +1,6 @@
-@(message: String)
+@(message: String, loginForm: play.data.Form[controllers.Authentication.Login])
+
+@import controllers.Authentication.Login
 @import play.i18n._
 
 @main(message) {
@@ -16,16 +18,16 @@
     <div role="main">
         <section id="login" aria-labelledby="loginheading">
             <h2 id="loginheading" class="accessibility">Login</h2>
-            <form action="/overview" method="post">
-                <fieldset>
-                    <legend id="logindata">@Messages.get("label_loginEn")</legend>
-                    <label for="username">@Messages.get("label_username"):</label>
-                    <input name="username" id="username" type="text" required="required"/>
-                    <label for="password">@Messages.get("label_password"):</label>
-                    <input name="password" id="password" type="password" required="required"/>
-                    <input name="login" id="loginsubmit" class="greenlink formlink clickable" type="submit" value="@Messages.get("label_login")"/>
-                </fieldset>
-            </form>
+            @helper.form(action = routes.Authentication.login()) {
+                    <fieldset>
+                        <legend id="logindata">@Messages.get("label_loginEn")</legend>
+                        <label for="username">@Messages.get("label_username"):</label>
+                        <input name="username" id="username" type="text" required="required"/>
+                        <label for="password">@Messages.get("label_password"):</label>
+                        <input name="password" id="password" type="password" required="required"/>
+                        <input name="login" id="loginsubmit" class="greenlink formlink clickable" type="submit" value="@Messages.get("label_login")"/>
+                    </fieldset>
+            }
         </section>
             <!-- Register section -->
         <section id="registerforward" aria-labelledby="registerheading">
