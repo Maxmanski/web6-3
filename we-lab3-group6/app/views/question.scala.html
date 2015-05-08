@@ -1,11 +1,12 @@
 @(message: String)
+@import play.i18n._
 
 @main("") {
     <a class="accessibility" href="#questions">Zur Fragenauswahl springen</a>
     <!-- Header -->
     <header role="banner" aria-labelledby="bannerheading">
         <h1 id="bannerheading">
-            <span class="accessibility">Business Informatics Group </span><span class="gametitle">Jeopardy!</span>
+            <span class="accessibility">Business Informatics Group </span><span class="gametitle">@Messages.get("label_jeopardy")</span>
         </h1>
     </header>
 
@@ -13,7 +14,7 @@
     <nav role="navigation" aria-labelledby="navheading">
         <h2 id="navheading" class="accessibility">Navigation</h2>
         <ul>
-            <li><a class="orangelink navigationlink" id="logoutlink" title="Klicke hier um dich abzumelden" href="login.xhtml" accesskey="l">Abmelden</a></li>
+            <li><a class="orangelink navigationlink" id="logoutlink" title="Klicke hier um dich abzumelden" href="/login" accesskey="l">@Messages.get("label_logout")</a></li>
         </ul>
     </nav>
 
@@ -28,7 +29,7 @@
                 <table>
                     <tr>
                         <th class="accessibility">Spielername</th>
-                        <td class="playername">Black Widow (Du)</td>
+                        <td class="playername">@Messages.get("message_user", "Black Widow")</td>
                     </tr>
                     <tr>
                         <th class="accessibility">Spielerpunkte</th>
@@ -50,14 +51,14 @@
                     </tr>
                 </table>
             </section>
-            <p id="round">Frage: 3 / 10</p>
+            <p id="round">@Messages.get("label_numQuestions"): 3 / 10</p>
         </section>
 
             <!-- Question -->
         <section id="question" aria-labelledby="questionheading">
             <form id="questionform" action="/evaluation" method="get">
                 <h2 id="questionheading" class="accessibility">Frage</h2>
-                <p id="questiontype">TUWIEN für € 300</p>
+                <p id="questiontype">@Messages.get("message_categoryForValue", "TUWIEN", "300")</p>
                 <p id="questiontext">Diese Lehrveranstaltungen bilden das Modul EWA.</p>
                 <ul id="answers">
                     <li><input name="answers" id="answer_1" value="1" type="checkbox"/><label class="tile clickable" for="answer_1">Was ist IT Strategie?</label></li>
@@ -66,13 +67,13 @@
                     <li><input name="answers" id="answer_4" value="4" type="checkbox"/><label class="tile clickable" for="answer_4">Was ist Objektorientierte Modellierung?</label></li>
                 </ul>
                 <input id="timeleftvalue" type="hidden" value="100"/>
-                <input class="greenlink formlink clickable" name="answer_submit" id="next" type="submit" value="antworten" accesskey="s"/>
+                <input class="greenlink formlink clickable" name="answer_submit" id="next" type="submit" value="@Messages.get("label_answer")" accesskey="s"/>
             </form>
         </section>
 
         <section id="timer" aria-labelledby="timerheading">
             <h2 id="timerheading" class="accessibility">Timer</h2>
-            <p><span id="timeleftlabel">Verbleibende Zeit:</span> <time id="timeleft">00:30</time></p>
+            <p><span id="timeleftlabel">@Messages.get("label_timeLeft"):</span> <time id="timeleft">00:30</time></p>
             <meter id="timermeter" min="0" low="20" value="100" max="100"/>
         </section>
     </div>

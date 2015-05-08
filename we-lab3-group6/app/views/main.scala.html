@@ -1,4 +1,5 @@
 @(title: String)(content: Html)
+@import play.i18n._
 
 <!DOCTYPE html>
 
@@ -17,6 +18,6 @@
         @content
 
         <!-- footer -->
-        <footer role="contentinfo">© 2015 BIG Jeopardy</footer>
+        <footer role="contentinfo">@Messages.get("label_copyright")</footer>
     </body>
 </html>

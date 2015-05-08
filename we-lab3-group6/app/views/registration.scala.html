@@ -1,112 +1,117 @@
-@(message: String)
+@(message: String, userForm: play.data.Form[models.User])
+@import models.User
+@import play.i18n._
 
-@main("") {
+    @main(message) {
 
-    <a title="Zur Registrierung springen" class="accessibility" href="/Registration">Zur Registrierung springen</a>
+        @helper.form(action = routes.Authentication.authentication){
+        }
 
-    <!-- Header -->
-    <header role="banner" aria-labelledby="bannerheading">
-        <h1 id="bannerheading">
-            <span class="accessibility">Business Informatics Group </span><span class="gametitle">Jeopardy!</span>
-        </h1>
-    </header>
+        <a title="Zur Registrierung springen" class="accessibility" href="/Registration">Zur Registrierung springen</a>
 
-    <!-- Navigation -->
-    <nav role="navigation" aria-labelledby="navheading">
-        <h2 id="navheading" class="accessibility">Navigation</h2>
-        <ul>
-            <li><a class="orangelink navigationlink" id="loginlink" title="Klicke hier um dich anzumelden" href="login.xhtml" accesskey="l">Anmelden</a></li>
-        </ul>
-    </nav>
+        <!-- Header -->
+        <header role="banner" aria-labelledby="bannerheading">
+            <h1 id="bannerheading">
+                <span class="accessibility">Business Informatics Group </span><span class="gametitle">@Messages.get("label_jeopardy")</span>
+            </h1>
+        </header>
 
-    <!-- Content -->
-    <div id="register" role="main">
-            <!-- Register section -->
-        <h2 id="registerheading" class="accessibility">Registrierung</h2>
-        <form action="login.xhtml" method="post">
-            <fieldset>
-                <legend>Persönliche Daten</legend>
-                <label for="firstname">Vorname:</label>
-                <input id="firstname" type="text" name="firstname"/>
+        <!-- Navigation -->
+        <nav role="navigation" aria-labelledby="navheading">
+            <h2 id="navheading" class="accessibility">Navigation</h2>
+            <ul>
+                <li><a class="orangelink navigationlink" id="loginlink" title="Klicke hier um dich anzumelden" href="login.xhtml" accesskey="l">Anmelden</a></li>
+            </ul>
+        </nav>
 
-                <label for="lastname">Nachname:</label>
-                <input id="lastname" type="text" name="lastname"/>
+        <!-- Content -->
+        <div id="register" role="main">
+                <!-- Register section -->
+            <h2 id="registerheading" class="accessibility">Registrierung</h2>
+            <form action="/register" method="post">
+                <fieldset>
+                    <legend>@Messages.get("label_personalData")</legend>
+                    <label for="firstname">@Messages.get("label_firstname"):</label>
+                    <input id="firstname" type="text" name="firstname"/>
 
-                <label for="birthdate">Geburtstag:</label>
-                <input id="birthdate" type="date" name="birthdate"/>
-                <div id="error_msg_birthdate" class="hide" role="alert">Verwenden Sie bitte folgendes Datumsformat: dd.mm.yyyy (z.B. 24.12.2010).</div>
+                    <label for="lastname">@Messages.get("label_lastname"):</label>
+                    <input id="lastname" type="text" name="lastname"/>
 
-                <label>Geschlecht:</label>
-                <fieldset class="inputset">
-                    <input type="radio" name="gender" id="male" value="m" checked="checked" />
-                    <label for="male">Männlich</label>
-                    <input type="radio" name="gender" id="female" value="f" />
-                    <label for="female">Weiblich</label>
+                    <label for="birthdate">@Messages.get("label_birthday"):</label>
+                    <input id="birthdate" type="date" name="birthdate"/>
+                    <div id="error_msg_birthdate" class="hide" role="alert">Verwenden Sie bitte folgendes Datumsformat: dd.mm.yyyy (z.B. 24.12.2010).</div>
+
+                    <label>@Messages.get("label_gender"):</label>
+                    <fieldset class="inputset">
+                        <input type="radio" name="gender" id="male" value="m" checked="checked" />
+                        <label for="male">@Messages.get("label_male")</label>
+                        <input type="radio" name="gender" id="female" value="f" />
+                        <label for="female">@Messages.get("label_female")</label>
+                    </fieldset>
+
+
                 </fieldset>
+                <fieldset>
+                    <legend>@Messages.get("label_userData")</legend>
+                    <label for="avatar">@Messages.get("label_avatar"):</label>
+                    <select id="avatar" name="avatar">
+                        <option value="aldrich-killian">Aldrich Killian</option>
+                        <option value="beetle">Beetle</option>
+                        <option value="black-widow">Black Widow</option>
+                        <option value="captain-america">Captain America</option>
+                        <option value="cyclops">Cyclops</option>
+                        <option value="deadpool">Deadpool</option>
+                        <option value="doctor-doom">Doctor Doom</option>
+                        <option value="doctor-octopus">Doctor Octopus</option>
+                        <option value="drax">Drax</option>
+                        <option value="electro">Electro</option>
+                        <option value="extremis-soldier">Extremis Soldier</option>
+                        <option value="falcon">Falcon</option>
+                        <option value="gamora">Gamora</option>
+                        <option value="green-goblin">Green Goblin</option>
+                        <option value="groot">Groot</option>
+                        <option value="hawkeye">Hawkeye</option>
+                        <option value="hulk">Hulk</option>
+                        <option value="hydra-henchman">Hydra Henchman</option>
+                        <option value="iron-fist">Iron Fist</option>
+                        <option value="iron-man">Iron Man</option>
+                        <option value="j-jonah-jameson">J. Jonah Jameson</option>
+                        <option value="loki">Loki</option>
+                        <option value="magneto">Magneto</option>
+                        <option value="mary-jane-watson">Mary Jane Watson</option>
+                        <option value="modok">MODOK</option>
+                        <option value="nebula">Nebula</option>
+                        <option value="nick-fury">Nick Fury</option>
+                        <option value="nova">Nova</option>
+                        <option value="pepper-potts">Pepper Potts</option>
+                        <option value="power-man">Power Man</option>
+                        <option value="red-skull">Red Skull</option>
+                        <option value="rocket">Rocket Raccoon</option>
+                        <option value="ronan">Ronan</option>
+                        <option value="spiderman">Spiderman</option>
+                        <option value="starlord">Starlord</option>
+                        <option value="taskmaster">Taskmaster</option>
+                        <option value="the-mandarin">The Mandarin</option>
+                        <option value="thor">Thor</option>
+                        <option value="tony-stark">Tony Stark</option>
+                        <option value="venom">Venom</option>
+                        <option value="war-machine">War Machine</option>
+                        <option value="wolverine">Wolverine</option>
+                    </select>
 
+                    <label for="username">@Messages.get("label_username")*:</label>
+                    <input id="username" type="text" required="required" pattern="\w{4,8}" name="username"/>
+                    <div id="error_msg_username" class="hide" role="alert">@Messages.get("message_fieldRestrictionLengthUsername")</div>
 
-            </fieldset>
-            <fieldset>
-                <legend>Spielerdaten</legend>
-                <label for="avatar">Avatar:</label>
-                <select id="avatar" name="avatar">
-                    <option value="aldrich-killian">Aldrich Killian</option>
-                    <option value="beetle">Beetle</option>
-                    <option value="black-widow">Black Widow</option>
-                    <option value="captain-america">Captain America</option>
-                    <option value="cyclops">Cyclops</option>
-                    <option value="deadpool">Deadpool</option>
-                    <option value="doctor-doom">Doctor Doom</option>
-                    <option value="doctor-octopus">Doctor Octopus</option>
-                    <option value="drax">Drax</option>
-                    <option value="electro">Electro</option>
-                    <option value="extremis-soldier">Extremis Soldier</option>
-                    <option value="falcon">Falcon</option>
-                    <option value="gamora">Gamora</option>
-                    <option value="green-goblin">Green Goblin</option>
-                    <option value="groot">Groot</option>
-                    <option value="hawkeye">Hawkeye</option>
-                    <option value="hulk">Hulk</option>
-                    <option value="hydra-henchman">Hydra Henchman</option>
-                    <option value="iron-fist">Iron Fist</option>
-                    <option value="iron-man">Iron Man</option>
-                    <option value="j-jonah-jameson">J. Jonah Jameson</option>
-                    <option value="loki">Loki</option>
-                    <option value="magneto">Magneto</option>
-                    <option value="mary-jane-watson">Mary Jane Watson</option>
-                    <option value="modok">MODOK</option>
-                    <option value="nebula">Nebula</option>
-                    <option value="nick-fury">Nick Fury</option>
-                    <option value="nova">Nova</option>
-                    <option value="pepper-potts">Pepper Potts</option>
-                    <option value="power-man">Power Man</option>
-                    <option value="red-skull">Red Skull</option>
-                    <option value="rocket">Rocket Raccoon</option>
-                    <option value="ronan">Ronan</option>
-                    <option value="spiderman">Spiderman</option>
-                    <option value="starlord">Starlord</option>
-                    <option value="taskmaster">Taskmaster</option>
-                    <option value="the-mandarin">The Mandarin</option>
-                    <option value="thor">Thor</option>
-                    <option value="tony-stark">Tony Stark</option>
-                    <option value="venom">Venom</option>
-                    <option value="war-machine">War Machine</option>
-                    <option value="wolverine">Wolverine</option>
-                </select>
-
-                <label for="username">Benutzername*:</label>
-                <input id="username" type="text" required="required" pattern="\w{4,8}" name="username"/>
-                <div id="error_msg_username" class="hide" role="alert">Der Benutzername muss mindestens 4 Zeichen und darf maximal 8 Zeichen enthalten.</div>
-
-                <label for="password">Passwort*:</label>
-                <input id="password" type="password" required="required" pattern="\w{4,8}" name="password"/>
-                <div id="error_msg_password" class="hide" role="alert">Das Passwort muss mindestens 4 Zeichen und darf maximal 8 Zeichen enthalten.</div>
-                <input class="greenlink formlink" type="submit" value="Registrieren" accesskey="s"/>
-                <p id="requiredhint">Mit "*" gekennzeichnete Felder sind Pflichtfelder</p>
-            </fieldset>
-        </form>
-    </div>
-    <script type="text/javascript">
+                    <label for="password">@Messages.get("label_password")*:</label>
+                    <input id="password" type="password" required="required" pattern="\w{4,8}" name="password"/>
+                    <div id="error_msg_password" class="hide" role="alert">@Messages.get("message_fieldRestrictionLengthPassword")</div>
+                    <input class="greenlink formlink" type="submit" value="@Messages.get("label_register")" accesskey="s"/>
+                    <p id="requiredhint">@Messages.get("message_mandatoryFields")</p>
+                </fieldset>
+            </form>
+        </div>
+        <script type="text/javascript">
     //<![CDATA[
 
     $(document).ready(function() {
@@ -247,4 +252,4 @@
     }
     //]]>
     </script>
-}
+    }

@@ -11,6 +11,7 @@ import java.util.Formatter;
 
 public class Evaluation extends Controller {
 
+    @Security.Authenticated(UserAuthenticator.class)
     public static Result winner() {
         return ok(winner.render(Messages.get("label_titleWinnerNotification")));
     }

@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 public class Overview extends Controller {
 
+    @Security.Authenticated(UserAuthenticator.class)
     public static Result jeopardy() {
         String filepath ="/conf/data.de.json";
         JeopardyFactory factory = new PlayJeopardyFactory(filepath);
