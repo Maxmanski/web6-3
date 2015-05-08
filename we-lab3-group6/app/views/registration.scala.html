@@ -1,11 +1,8 @@
-@(message: String, userForm: play.data.Form[models.User])
+@(userForm: play.data.Form[models.User])
 @import models.User
 @import play.i18n._
 
-    @main(message) {
-
-        @helper.form(action = routes.Authentication.authentication){
-        }
+    @main(Messages.get("label_titleRegistration")) {
 
         <a title="Zur Registrierung springen" class="accessibility" href="/Registration">Zur Registrierung springen</a>
 
@@ -20,14 +17,27 @@
         <nav role="navigation" aria-labelledby="navheading">
             <h2 id="navheading" class="accessibility">Navigation</h2>
             <ul>
-                <li><a class="orangelink navigationlink" id="loginlink" title="Klicke hier um dich anzumelden" href="login.xhtml" accesskey="l">Anmelden</a></li>
+                <li><a class="orangelink navigationlink" id="loginlink" title="Klicke hier um dich anzumelden" href="@routes.Authentication.authentication()" accesskey="l">Anmelden</a></li>
             </ul>
         </nav>
 
         <!-- Content -->
         <div id="register" role="main">
-                <!-- Register section -->
+            <!-- Register section -->
             <h2 id="registerheading" class="accessibility">Registrierung</h2>
+
+            @if(userForm.hasErrors){
+                <p>
+                    <ul>
+                        @for(entry <- userForm.errors.entrySet()){
+                            @for(error <- entry.getValue){
+                                <li>@error.message()</li>
+                            }
+                        }
+                    </ul>
+                </p>
+            }
+
             <form action="/register" method="post">
                 <fieldset>
                     <legend>@Messages.get("label_personalData")</legend>
@@ -43,9 +53,9 @@
 
                     <label>@Messages.get("label_gender"):</label>
                     <fieldset class="inputset">
-                        <input type="radio" name="gender" id="male" value="m" checked="checked" />
+                        <input type="radio" name="gender" id="male" value="male" checked="checked" />
                         <label for="male">@Messages.get("label_male")</label>
-                        <input type="radio" name="gender" id="female" value="f" />
+                        <input type="radio" name="gender" id="female" value="female" />
                         <label for="female">@Messages.get("label_female")</label>
                     </fieldset>
 
@@ -53,8 +63,8 @@
                 </fieldset>
                 <fieldset>
                     <legend>@Messages.get("label_userData")</legend>
-                    <label for="avatar">@Messages.get("label_avatar"):</label>
-                    <select id="avatar" name="avatar">
+                    <label for="avatarid">@Messages.get("label_avatar"):</label>
+                    <select id="avatarid" name="avatarid">
                         <option value="aldrich-killian">Aldrich Killian</option>
                         <option value="beetle">Beetle</option>
                         <option value="black-widow">Black Widow</option>
