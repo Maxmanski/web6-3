@@ -17,27 +17,18 @@ public class Overview extends Controller {
     @Transactional
     public static Result jeopardy() {
         String filepath;
-        String language = Lang.apply$default$2();
-        if(language.equals("de")) {
+        String language = play.i18n.Lang.defaultLang().language();
+        if(language.startsWith("de")) {
             filepath = "data.de.json";
         }else{
             filepath = "data.en.json";
         }
+
         JeopardyFactory factory = new PlayJeopardyFactory(filepath);
-        QuestionDataProvider provider =factory.createQuestionDataProvider();
-        //List<Category> categories = provider.getCategoryData();
 
         String uuid = session().get("uuid");
         String username = session().get("username");
         User user = Users.getUserByUsername(username);
-
-        /** NUR FUER TESTEN, SPAETER LOESCHEN**/
-        if(user == null){
-            user=new SimpleUser();
-            user.setName("user 1");
-            user.setAvatar(Avatar.ALDRICH_KILLIAN);
-        }
-        /**************************************/
 
         JeopardyGame game;
         if((Cache.get(uuid + "game") == null) || !(Cache.get(uuid + "game") instanceof JeopardyGame)){

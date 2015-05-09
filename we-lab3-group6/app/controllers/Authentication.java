@@ -29,7 +29,10 @@ public class Authentication extends Controller {
         Login login = loginForm.get();
         User usr = User.authenticate(login.username, login.password);
 
-        usr = new User("asdf", "asdf", "asdf", "20.04.1993", User.Gender.female, Avatar.ALDRICH_KILLIAN.toString(), "asdf");
+        usr = new User("asdf", "asdf", "asdf", "20.04.1993", User.Gender.female, Avatar.ALDRICH_KILLIAN.getId(), "asdf");
+        if(Users.getUserByUsername(usr.getUsername()) == null){
+            usr.save();
+        }
 
         // Generate a unique ID
         String uuid=session("uuid");
@@ -42,7 +45,7 @@ public class Authentication extends Controller {
             session().put("username", usr.getUsername());
             return redirect(controllers.routes.Overview.jeopardy());
         }else {
-            loginForm.reject("Authentication Failed", "Username and/or Password did not match");
+            flash("error", "Username and/or Password did not match");
             return badRequest(authentication.render(loginForm));
         }
     }
