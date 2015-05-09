@@ -1,5 +1,6 @@
 @(message: String)
 @import play.i18n._
+@import play.cache
 
 @main("Business Informatics Group Jeopardy! - " + Messages.get("label_titleQuestionSelection")) {
     <a class="accessibility" href="#question-selection">@Messages.get("label_goToQuestions")</a>
@@ -20,6 +21,8 @@
     </nav>
 
     <!-- Content -->
+    @cache.Cache.get("game")
+
     <div role="main">
             <!-- info -->
         <section id="gameinfo" aria-labelledby="gameinfoinfoheading">

@@ -40,10 +40,7 @@ public class Overview extends Controller {
         /**************************************/
 
         JeopardyGame game = factory.createGame(user);
-
         Cache.set(uuid+"game", game);
-
-        Player human = game.getHumanPlayer();
 
         return ok(jeopardy.render(Messages.get("label_titleQuestionSelection")));
     }
