@@ -1,10 +1,8 @@
 package models;
 
 import at.ac.tuwien.big.we15.lab2.api.Avatar;
-import at.ac.tuwien.big.we15.lab2.api.JeopardyFactory;
-import at.ac.tuwien.big.we15.lab2.api.impl.PlayJeopardyFactory;
-import play.data.validation.ValidationError;
 import play.data.validation.Constraints;
+import play.data.validation.ValidationError;
 import play.db.ebean.Model;
 import play.i18n.Messages;
 
@@ -16,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by maxmanski on 07.05.15.
+ * User Model Class, used for persistence, etc.
  */
 @Entity
 public class User extends Model implements at.ac.tuwien.big.we15.lab2.api.User {
@@ -28,32 +26,49 @@ public class User extends Model implements at.ac.tuwien.big.we15.lab2.api.User {
     @Id
     @Constraints.MinLength(4)
     @Constraints.MaxLength(8)
-    public String username;
+    private String username;
 
     @Constraints.Required
     @Constraints.MinLength(4)
     @Constraints.MaxLength(8)
-    public String password;
-    public String firstname;
-    public String lastname;
+    private String password;
 
     @Constraints.Pattern("\\d{1,2}\\.\\d{1,2}\\.(\\d{2,2}|\\d{4,4})")
-    public String birthdate;
-    public Gender gender;
-    public String avatar;
+    private String birthdate;
+
+    private String firstname;
+    private String lastname;
+    private Gender gender;
+    private String avatarid;
 
     public User(){
-        this(null, null, null, null, null, null, null);
+        this("", "", "", null, null, null, "");
     }
 
-    public User(String username, String firstname, String lastname, String birthdate, Gender gender, String avatar, String password){
+    public User(String username, String firstname, String lastname, String birthdate, Gender gender, String avatarid, String password){
         this.username = username;
         this.firstname = firstname;
         this.lastname = lastname;
         this.birthdate = birthdate;
         this.gender = gender;
-        this.avatar = avatar;
+        this.avatarid = avatarid;
         this.password = password;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getUsername() {
@@ -88,6 +103,14 @@ public class User extends Model implements at.ac.tuwien.big.we15.lab2.api.User {
         this.gender = gender;
     }
 
+    public String getAvatarid(){
+        return this.avatarid;
+    }
+
+    public void setAvatarid(String avatarid){
+        this.avatarid = avatarid;
+    }
+
     @Override
     public String getName() {
         return firstname + " " + lastname;
@@ -112,12 +135,12 @@ public class User extends Model implements at.ac.tuwien.big.we15.lab2.api.User {
 
     @Override
     public Avatar getAvatar() {
-        return Avatar.getAvatar(avatar);
+        return Avatar.getAvatar(this.avatarid);
     }
 
     @Override
     public void setAvatar(Avatar avatar) {
-        this.avatar = avatar.getId();
+        this.avatarid = avatar.getId();
     }
 
     @Override
@@ -136,12 +159,12 @@ public class User extends Model implements at.ac.tuwien.big.we15.lab2.api.User {
                 ((this.gender == null) && (user.gender != null)) ||
                 ((this.birthdate == null) && (user.birthdate != null)) ||
                 ((this.password == null) && (user.password != null)) ||
-                ((this.avatar == null) && (user.avatar != null))){
+                ((this.avatarid == null) && (user.avatarid != null))){
 
             return false;
 
         }
-        if((this.avatar.equals(user.avatar)) && (this.username.equals(user.username)) &&
+        if((this.avatarid.equals(user.avatarid)) && (this.username.equals(user.username)) &&
                 (this.firstname.equals(user.firstname)) && (this.lastname.equals(user.lastname)) &&
                 (this.birthdate.equals(user.birthdate)) && (this.gender.equals(user.gender)) &&
                 (this.password.equals(user.password))){
@@ -157,7 +180,9 @@ public class User extends Model implements at.ac.tuwien.big.we15.lab2.api.User {
         List<ValidationError> errors = new ArrayList<ValidationError>();
 
         try {
-            new SimpleDateFormat("dd.MM.yyyy").parse(this.birthdate);
+            if((this.birthdate != null) && (!this.birthdate.isEmpty())){
+                new SimpleDateFormat("dd.MM.yyyy").parse(this.birthdate);
+            }
         }catch (ParseException e) {
             errors.add(new ValidationError("birthdate", Messages.get("error_birthday")));
         }
@@ -176,7 +201,15 @@ public class User extends Model implements at.ac.tuwien.big.we15.lab2.api.User {
     public static Finder<String, User> find = new Finder<String, User>(String.class, User.class);
 
     public static User authenticate(String username, String password){
+        if((username == null) || (password == null)){
+            return null;
+        }
         return find.where().eq("username", username).eq("password", password).findUnique();
+    }
+
+    @Override
+    public String toString(){
+        return "User \"" + username + "\": Name: " + firstname + " " + lastname + ", PW: " + password + ", BDay: " + birthdate + ", Gender: " + gender + ", Avatar: " + avatarid;
     }
 
 }

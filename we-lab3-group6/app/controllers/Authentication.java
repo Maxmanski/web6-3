@@ -1,39 +1,52 @@
 package controllers;
 
 import models.User;
-import play.data.DynamicForm;
 import play.data.Form;
 import play.db.jpa.Transactional;
-import play.i18n.Messages;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.authentication;
+import play.cache.Cache;
 
 public class Authentication extends Controller {
 
     public static Result authentication() {
-        return ok(authentication.render(Messages.get("label_login"), play.data.Form.form(Login.class)));
+        return ok(authentication.render(play.data.Form.form(Login.class)));
     }
 
     @Transactional
     public static Result login(){
+        session().clear();
         Form<Login> loginForm = Form.form(Login.class).bindFromRequest();
 
         if(loginForm.hasErrors()){
             System.out.println(loginForm.errors());
-            return ok(authentication.render(Messages.get("label_login"), loginForm));
+            return ok(authentication.render(loginForm));
         }
 
-        User usr = Users.getUserByUsername(loginForm.get().username);
+        Login login = loginForm.get();
+        User usr = User.authenticate(login.username, login.password);
 
-        System.out.println(usr);
+        // Generate a unique ID
+        String uuid=session("uuid");
+        if(uuid==null) {
+            uuid=java.util.UUID.randomUUID().toString();
+            session("uuid", uuid);
+        }
 
-        System.out.println(loginForm.get().username);
-        System.out.println(loginForm.get().password);
+        if(usr != null){
+            session().put("username", usr.getUsername());
+            return redirect(controllers.routes.Overview.jeopardy());
+        }else {
+            loginForm.reject("Authentication Failed", "Username and/or Password did not match");
+            return badRequest(authentication.render(loginForm));
+        }
+    }
 
+    public static Result logout(){
         session().clear();
-        session().put("username", loginForm.get().username);
-        return redirect(controllers.routes.Overview.jeopardy());
+        Cache.remove("game");
+        return ok(authentication.render(Form.form(Login.class)));
     }
 
     public static class Login{

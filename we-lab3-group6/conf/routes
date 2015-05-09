@@ -9,6 +9,7 @@ GET         /                    controllers.Authentication.authentication()
 GET         /assets/*file        controllers.Assets.at(path="/public", file)
 
 POST        /login               controllers.Authentication.login()
+GET         /logout              controllers.Authentication.logout()
 GET         /registration        controllers.Registration.registration()
 POST        /register            controllers.Registration.register()
 POST        /overview            controllers.Overview.jeopardy()
@@ -18,3 +19,4 @@ GET         /evaluation          controllers.Evaluation.winner()
 # routes zum testen, NACHER LOESCHEN
 GET         /overview            controllers.Overview.jeopardy()
 GET         /question            controllers.Question.question()
+GET         /list                controllers.Users.listAll()

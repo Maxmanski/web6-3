@@ -2,7 +2,7 @@
 @import play.i18n._
 
 @main("") {
-    <a class="accessibility" href="/evaluation">Zur Gewinnanzeige springen</a>
+    <a class="accessibility" href="#winner">Zur Gewinnanzeige springen</a>
     <!-- Header -->
     <header role="banner" aria-labelledby="bannerheading">
         <h1 id="bannerheading">
@@ -14,7 +14,7 @@
     <nav role="navigation" aria-labelledby="navheading">
         <h2 id="navheading" class="accessibility">Navigation</h2>
         <ul>
-            <li><a class="orangelink navigationlink" id="logoutlink" title="Klicke hier um dich abzumelden" href="/authentication" accesskey="l">Abmelden</a></li>
+            <li><a class="orangelink navigationlink" id="logoutlink" title="Klicke hier um dich abzumelden" href="@routes.Authentication.logout()" accesskey="l">Abmelden</a></li>
         </ul>
     </nav>
 
