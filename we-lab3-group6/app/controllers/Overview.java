@@ -39,8 +39,18 @@ public class Overview extends Controller {
         }
         /**************************************/
 
-        JeopardyGame game = factory.createGame(user);
-        Cache.set(uuid+"game", game);
+        JeopardyGame game;
+        if((Cache.get(uuid + "game") == null) || !(Cache.get(uuid + "game") instanceof JeopardyGame)){
+            game = factory.createGame(user);
+            Cache.set(uuid + "game", game);
+        }else{
+            game = ((JeopardyGame)Cache.get(uuid + "game"));
+        }
+
+        if(game.isGameOver()){
+            game = factory.createGame(user);
+            Cache.set(uuid + "game", game);
+        }
 
         return ok(jeopardy.render(Messages.get("label_titleQuestionSelection"), game));
     }

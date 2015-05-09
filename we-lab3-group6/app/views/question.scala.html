@@ -57,18 +57,18 @@
 
             <!-- Question -->
         <section id="question" aria-labelledby="questionheading">
-            <form id="questionform" action="/evaluation" method="get">
+            @helper.form(action = routes.Evaluation.evaluate()){
                 <h2 id="questionheading" class="accessibility">Frage</h2>
                 <p id="questiontype">@Messages.get("message_categoryForValue", "TUWIEN", "300")</p>
                 <p id="questiontext">@question.getText()</p>
                 <ul id="answers">
                     @for(answer <- question.getAllAnswers){
-                        <li><input name="answers" id="answer_@answer.getId" value="@answer.getId" type="checkbox"/><label class="tile clickable" for="answer_@answer.getId">@answer.getText()</label></li>
+                        <li><input name="answers:@answer.getId" id="answer_@answer.getId" value="@answer.getId" type="checkbox"/><label class="tile clickable" for="answer_@answer.getId">@answer.getText()</label></li>
                     }
                 </ul>
                 <input id="timeleftvalue" type="hidden" value="100"/>
                 <input class="greenlink formlink clickable" name="answer_submit" id="next" type="submit" value="@Messages.get("label_answer")" accesskey="s"/>
-            </form>
+            }
         </section>
 
         <section id="timer" aria-labelledby="timerheading">
