@@ -1,4 +1,4 @@
-@(message: String)
+@(message: String, game: at.ac.tuwien.big.we15.lab2.api.JeopardyGame, question: at.ac.tuwien.big.we15.lab2.api.Question)
 @import play.i18n._
 
 @main("Business Informatics Group Jeopardy! - " + Messages.get("label_titleQuestion")) {
@@ -60,12 +60,11 @@
             <form id="questionform" action="/evaluation" method="get">
                 <h2 id="questionheading" class="accessibility">Frage</h2>
                 <p id="questiontype">@Messages.get("message_categoryForValue", "TUWIEN", "300")</p>
-                <p id="questiontext">Diese Lehrveranstaltungen bilden das Modul EWA.</p>
+                <p id="questiontext">@question.getText()</p>
                 <ul id="answers">
-                    <li><input name="answers" id="answer_1" value="1" type="checkbox"/><label class="tile clickable" for="answer_1">Was ist IT Strategie?</label></li>
-                    <li><input name="answers" id="answer_2" value="2" type="checkbox"/><label class="tile clickable" for="answer_2">Was ist Web Engineering?</label></li>
-                    <li><input name="answers" id="answer_3" value="3" type="checkbox"/><label class="tile clickable" for="answer_3">Was ist Semistrukturierte Daten?</label></li>
-                    <li><input name="answers" id="answer_4" value="4" type="checkbox"/><label class="tile clickable" for="answer_4">Was ist Objektorientierte Modellierung?</label></li>
+                    @for(answer <- question.getAllAnswers){
+                        <li><input name="answers" id="answer_@answer.getId" value="@answer.getId" type="checkbox"/><label class="tile clickable" for="answer_@answer.getId">@answer.getText()</label></li>
+                    }
                 </ul>
                 <input id="timeleftvalue" type="hidden" value="100"/>
                 <input class="greenlink formlink clickable" name="answer_submit" id="next" type="submit" value="@Messages.get("label_answer")" accesskey="s"/>

@@ -16,4 +16,9 @@ public class Evaluation extends Controller {
         return ok(winner.render(Messages.get("label_titleWinnerNotification")));
     }
 
+    @Security.Authenticated(UserAuthenticator.class)
+    public static Result evaluate(){
+        return redirect(routes.Evaluation.winner());
+    }
+
 }

@@ -1,7 +1,6 @@
 @(loginForm: play.data.Form[controllers.Authentication.Login])
-
-@import controllers.Authentication.Login
 @import play.i18n._
+@import play.cache._
 
 @main("Business Informatics Group Jeopardy! - " + Messages.get("label_login")) {
     <a class="accessibility" href="#login">@Messages.get("label_toLogin")</a>
