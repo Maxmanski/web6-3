@@ -1,5 +1,6 @@
 package controllers;
 
+import at.ac.tuwien.big.we15.lab2.api.*;
 import play.*;
 import play.mvc.*;
 
@@ -18,6 +19,11 @@ public class Evaluation extends Controller {
 
     @Security.Authenticated(UserAuthenticator.class)
     public static Result evaluate(){
+        JeopardyGame game = null;
+
+        Integer qId;
+        at.ac.tuwien.big.we15.lab2.api.Question question;
+
         return redirect(routes.Evaluation.winner());
     }
 
