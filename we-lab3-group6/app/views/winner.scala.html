@@ -28,7 +28,7 @@
             <p class="user-info negative-change">@Messages.get("message_wrongAnswerOpponent", game.getMarvin.getAvatar): -@game.getMarvinPlayer.getLatestProfitChange €</p>
             <section class="playerinfo leader" aria-labelledby="winnerannouncement">
                 <h3 id="winnerannouncement">@Messages.get("label_winner"): @game.getLeader.getUser.getAvatar</h3>
-                <img class="avatar" src="@routes.Assets.at(game.getLeader.getUser.getAvatar.getImageFull)" alt="@Messages.get("label_playerAvatar", game.getLeader.getUser.getAvatar.getName)" />
+                <img class="avatar" src="@routes.Assets.at("images/avatar/"+game.getLeader.getUser.getAvatar.getImageFull)" alt="@Messages.get("label_playerAvatar", game.getLeader.getUser.getAvatar.getName)" />
                 <table>
                     <tr>
                         <th class="accessibility">@Messages.get("label_playerName")</th>
@@ -42,7 +42,7 @@
             </section>
             <section class="playerinfo" aria-labelledby="loserheading">
                 <h3 id="loserheading" class="accessibility">@Messages.get("label_loser"): @game.getLoser.getUser.getAvatar</h3>
-                <img class="avatar" src="@routes.Assets.at(game.getLoser.getUser.getAvatar.getImageHead)" alt="Spieler-Avatar Deadpool" />
+                <img class="avatar" src="@routes.Assets.at("images/avatar/"+game.getLoser.getUser.getAvatar.getImageHead)" alt="Spieler-Avatar Deadpool" />
                 <table>
                     <tr>
                         <th class="accessibility">@Messages.get("label_playerName")</th>

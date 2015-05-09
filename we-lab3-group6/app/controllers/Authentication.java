@@ -2,6 +2,7 @@ package controllers;
 
 import at.ac.tuwien.big.we15.lab2.api.Avatar;
 import models.User;
+import play.data.DynamicForm;
 import play.data.Form;
 import play.db.jpa.Transactional;
 import play.mvc.Controller;
@@ -55,5 +56,30 @@ public class Authentication extends Controller {
     public static class Login{
         public String username;
         public String password;
+
+        public Login(){
+            this(null, null);
+        }
+
+        public Login(String username, String password){
+            this.username = username;
+            this.password = password;
+        }
+        public String getUsername() {
+            return username;
+        }
+
+        public void setUsername(String username) {
+            this.username = username;
+        }
+
+        public String getPassword() {
+            return password;
+        }
+
+        public void setPassword(String password) {
+            this.password = password;
+        }
+
     }
 }
