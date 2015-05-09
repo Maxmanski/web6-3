@@ -1,5 +1,6 @@
 package controllers;
 
+import at.ac.tuwien.big.we15.lab2.api.Avatar;
 import models.User;
 import play.data.DynamicForm;
 import play.data.Form;
@@ -27,6 +28,8 @@ public class Authentication extends Controller {
 
         Login login = loginForm.get();
         User usr = User.authenticate(login.username, login.password);
+
+        usr = new User("asdf", "asdf", "asdf", "20.04.1993", User.Gender.female, Avatar.ALDRICH_KILLIAN.toString(), "asdf");
 
         // Generate a unique ID
         String uuid=session("uuid");

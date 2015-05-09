@@ -1,6 +1,6 @@
-@(message: String)(game: JeopardyGame)
-@import play.i18n._
-@import at.ac.tuwien.big.we15.lab2.api.JeopardyGame;
+@(game: JeopardyGame)
+@import at.ac.tuwien.big.we15.lab2.api.JeopardyGame
+@import play.i18n._;
 
 @main(("Business Informatics Group Jeopardy! - " + Messages.get("label_titleWinnerNotification"))) {
     <a class="accessibility" href="#winnerannouncement">@Messages.get("label_goToWinner")</a>
@@ -24,7 +24,7 @@
     <div role="main">
         <section id="gameinfo" aria-labelledby="winnerinfoheading">
             <h2 id="winnerinfoheading" class="accessibility">@Messages.get("label_winnerInfo")</h2>
-            <p class="user-info positive-change">@Messages.get("message_rightAnswerUser"): @game.getHumanPlayer.getChosenQuestion.getValue €</p>
+            <p class="user-info positive-change">@Messages.get("message_rightAnswerUser"): @game.getHumanPlayer.getLatestProfitChange €</p>
             <p class="user-info negative-change">@Messages.get("message_wrongAnswerOpponent", game.getMarvin.getAvatar): -@game.getMarvinPlayer.getLatestProfitChange €</p>
             <section class="playerinfo leader" aria-labelledby="winnerannouncement">
                 <h3 id="winnerannouncement">@Messages.get("label_winner"): @game.getLeader.getUser.getAvatar</h3>
