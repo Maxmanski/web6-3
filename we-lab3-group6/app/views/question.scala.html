@@ -1,7 +1,7 @@
 @(message: String, game: at.ac.tuwien.big.we15.lab2.api.JeopardyGame, question: at.ac.tuwien.big.we15.lab2.api.Question)
 @import play.i18n._
 
-@main("Business Informatics Group Jeopardy! - " + Messages.get("label_titleQuestion")) {
+@main(Messages.get("label_titleQuestion"), "question-page") {
     <a class="accessibility" href="#questions">@Messages.get("label_goToQuestions")</a>
     <!-- Header -->
     <header role="banner" aria-labelledby="bannerheading">

@@ -2,7 +2,7 @@
 @import at.ac.tuwien.big.we15.lab2.api.JeopardyGame
 @import play.i18n._;
 
-@main(("Business Informatics Group Jeopardy! - " + Messages.get("label_titleWinnerNotification"))) {
+@main(Messages.get("label_titleWinnerNotification"), "winner-page") {
     <a class="accessibility" href="#winnerannouncement">@Messages.get("label_goToWinner")</a>
     <!-- Header -->
     <header role="banner" aria-labelledby="bannerheading">

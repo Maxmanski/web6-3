@@ -2,7 +2,7 @@
 @import play.i18n._
 @import at.ac.tuwien.big.we15.lab2.api.JeopardyGame;
 
-@main("Business Informatics Group Jeopardy! - " + Messages.get("label_titleQuestionSelection")) {
+@main(Messages.get("label_titleQuestionSelection"), "selection-page") {
     <a class="accessibility" href="#question-selection">@Messages.get("label_goToQuestions")</a>
     <!-- Header -->
     <header role="banner" aria-labelledby="bannerheading">
@@ -71,7 +71,7 @@
                             <h3 id="@category.getName()heading" class="tile category-title"><span class="accessibility">@Messages.get("label_category"): </span>@category.getName()</h3>
                             <ol class="category_questions">
                             @for(question <- category.getQuestions) {
-                                <li><input name="question_selection" id="question_@question.getId" value="@question.getId" type="radio" /><label class="tile clickable" for="question_@question.getId">€ @{question.getValue()*10}</label></li>
+                                <li><input @{if(game.hasBeenChosen(question)) "disabled=\"disabled\""} name="question_selection" id="question_@question.getId" value="@question.getId" type="radio" /><label class="tile clickable" for="question_@question.getId">€ @{question.getValue()*10}</label></li>
                             }
                             </ol>
                         </section>

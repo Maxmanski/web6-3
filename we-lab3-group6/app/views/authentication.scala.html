@@ -2,7 +2,7 @@
 @import play.i18n._
 @import play.cache._
 
-@main("Business Informatics Group Jeopardy! - " + Messages.get("label_login")) {
+@main(Messages.get("label_login"), "login-page") {
     <a class="accessibility" href="#login">@Messages.get("label_toLogin")</a>
     <a class="accessibility" title="@Messages.get("label_clickToRegister")" href="@routes.Registration.registration()" accesskey="r">@Messages.get("label_register")</a>
     <!-- Header -->
@@ -14,11 +14,6 @@
             <span class="gametitle">@Messages.get("label_jeopardy")</span>
         </h1>
     </header>
-
-    <!-- Navigation -->
-    <nav role="navigation" aria-labelledby="navheading">
-        <h2 id="navheading" class="accessibility">@Messages.get("label_navigation")</h2>
-    </nav>
 
     <!-- Content -->
     <div role="main">
