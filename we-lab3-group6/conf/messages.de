@@ -16,6 +16,7 @@ label_navigation=Navigation
 label_registration=Registrierung
 label_goToQuestions=Zur Fragenauswahl springen
 label_goToRegistration=Zur Registrierung springen
+label_goToWinner=Zur Gewinnanzeige springen
 label_gameInfo=Spielinformationen
 label_category=Kategorie
 
@@ -52,6 +53,7 @@ error_birthdayMessage=Verwenden Sie bitte das folgende Datumsformat: {0} (z.B. {
 
 label_newGame=Neues Spiel
 label_winner=Gewinner
+label_loser=Verlierer
 label_titleWinnerNotification=Gewinnanzeige
 label_titleQuestionSelection=Fragenauswahl
 label_titleQuestion=Fragenbeantwortung
@@ -60,5 +62,6 @@ message_categoryForValue= {0} für € {1}
 label_answer=antworten
 label_timeLeft=verbleibende Zeit
 label_leader=Führender Spieler
-label_second=Zweiter Spieler
+label_secondPlayer=Zweiter Spieler
 label_playerAvatar=Spieler-Avatar {0}
+label_winnerInfo=Winner Information
