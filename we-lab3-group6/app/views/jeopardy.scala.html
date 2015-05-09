@@ -36,7 +36,7 @@
                     </tr>
                     <tr>
                         <th class="accessibility">@Messages.get("message_playerScore")</th>
-                        <td class="playerpoints">@game.getLeader.getProfit €</td>
+                        <td class="playerpoints">@{game.getLeader.getProfit*10} €</td>
                     </tr>
                 </table>
             </section>
@@ -50,11 +50,11 @@
                     </tr>
                     <tr>
                         <th class="accessibility">@Messages.get("label_playerScore")</th>
-                        <td class="playerpoints">@game.getSecond.getProfit €</td>
+                        <td class="playerpoints">@{game.getSecond.getProfit*10} €</td>
                     </tr>
                 </table>
             </section>
-            <p id="round">@Messages.get("label_numQuestions"): 2 / 10</p>
+            <p id="round">@Messages.get("label_numQuestions"): @{game.getHumanPlayer.getAnsweredQuestions.size()+1} / 10</p>
         </section>
 
             <!-- Question -->

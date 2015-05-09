@@ -26,33 +26,33 @@
             <h2 id="gameinfoinfoheading" class="accessibility">@Messages.get("label_gameInfo")</h2>
             <section id="firstplayer" class="playerinfo leader" aria-labelledby="firstplayerheading">
                 <h3 id="firstplayerheading" class="accessibility">@Messages.get("label_leader")</h3>
-                <img class="avatar" src="@routes.Assets.at("images/avatar/black-widow_head.png")" alt="@Messages.get("label_playerAvatar", "Black Widow")" />
+                <img class="avatar" src="@routes.Assets.at("images/avatar/"+game.getLeader.getUser.getAvatar.getImageHead)" alt="@Messages.get("label_playerAvatar", game.getLeader.getUser.getName)" />
                 <table>
                     <tr>
                         <th class="accessibility">@Messages.get("label_playerName")</th>
-                        <td class="playername">@Messages.get("message_user", "Black Widow")</td>
+                        <td class="playername">@Messages.get("message_user", game.getLeader.getUser.getName)</td>
                     </tr>
                     <tr>
                         <th class="accessibility">@Messages.get("label_playerScore")</th>
-                        <td class="playerpoints">2000 €</td>
+                        <td class="playerpoints">@{game.getLeader.getProfit*10} €</td>
                     </tr>
                 </table>
             </section>
             <section id="secondplayer" class="playerinfo" aria-labelledby="secondplayerheading">
                 <h3 id="secondplayerheading" class="accessibility">@Messages.get("label_secondPlayer")</h3>
-                <img class="avatar" src="@routes.Assets.at("images/avatar/deadpool_head.png")" alt="@Messages.get("label_playerAvatar", "Deadpool")" />
+                <img class="avatar" src="@routes.Assets.at("images/avatar/"+game.getSecond.getUser.getAvatar.getImageHead)" alt="@Messages.get("label_playerAvatar", game.getSecond.getUser.getName)" />
                 <table>
                     <tr>
                         <th class="accessibility">@Messages.get("label_playerName")</th>
-                        <td class="playername">Deadpool</td>
+                        <td class="playername">@game.getSecond.getUser.getName</td>
                     </tr>
                     <tr>
                         <th class="accessibility">@Messages.get("label_playerScore")</th>
-                        <td class="playerpoints">400 €</td>
+                        <td class="playerpoints">@{game.getSecond.getProfit*10} €</td>
                     </tr>
                 </table>
             </section>
-            <p id="round">@Messages.get("label_numQuestions"): 3 / 10</p>
+            <p id="round">@Messages.get("label_numQuestions"): @{game.getHumanPlayer.getAnsweredQuestions.size()+1} / 10</p>
         </section>
 
             <!-- Question -->
@@ -68,7 +68,7 @@
                     <p class="error">@error</p>
                 }
 
-                <p id="questiontype">@Messages.get("message_categoryForValue", "TUWIEN", "300")</p>
+                <p id="questiontype">@Messages.get("message_categoryForValue", game.getHumanPlayer.getChosenQuestion.getCategory.getName, ((game.getHumanPlayer.getChosenQuestion.getValue)*10  ).toString)</p>
                 <p id="questiontext">@question.getText()</p>
                 <ul id="answers">
                     @for(answer <- question.getAllAnswers){
