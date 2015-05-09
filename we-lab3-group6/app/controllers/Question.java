@@ -2,6 +2,7 @@ package controllers;
 
 import at.ac.tuwien.big.we15.lab2.api.Category;
 import at.ac.tuwien.big.we15.lab2.api.JeopardyGame;
+import models.User;
 import play.cache.Cache;
 import play.data.DynamicForm;
 import play.data.Form;
@@ -15,19 +16,24 @@ public class Question extends Controller {
 
     @Security.Authenticated(UserAuthenticator.class)
     public static Result question() {
+        if(User.getUserByUsername(session("username")) == null){
+            flash("error", Messages.get("error_sessionUserInvalid"));
+            return redirect(routes.Authentication.authentication());
+        }
+
         JeopardyGame game = null;
         String uuid = session("uuid");
         Integer qId;
-        at.ac.tuwien.big.we15.lab2.api.Question q = null, aiQ = null;
+        at.ac.tuwien.big.we15.lab2.api.Question q = null;
 
         DynamicForm form = Form.form().bindFromRequest();
 
         // check if the game is still in the cache: if it isn't, start new game
-        if(Cache.get(uuid + "game") == null){
-            flash("error", "Game could not be loaded from the cache - starting new one");
-            return badRequest(); // TODO
+        if((Cache.get(uuid + "game") == null) || !(Cache.get(uuid + "game") instanceof JeopardyGame)){
+            flash("error", Messages.get("error_loadingGameData"));
+            return redirect(routes.Overview.jeopardy());
 
-        }else if(Cache.get(uuid + "game") instanceof JeopardyGame){
+        }else{
             game = ((JeopardyGame)Cache.get(uuid + "game"));
 
             // check for valid chosen question
@@ -49,18 +55,14 @@ public class Question extends Controller {
 
             // if no valid question was chosen, redirect back to overview
             if(qId == null){
-                flash("error", "No valid question was chosen");
+                flash("error", Messages.get("error_noValidQuestion"));
                 return redirect(routes.Overview.jeopardy());
 
             }
 
             Cache.set(uuid + "game", game);
-            return ok(question.render(Messages.get("label_titleQuestion"), game, q));
+            return ok(question.render(game, q, flash("warning"), flash("error")));
 
-        }else{
-
-            // should not happen unless someone tampered with the cache
-            return badRequest(); // TODO redirect to new game
         }
     }
 }

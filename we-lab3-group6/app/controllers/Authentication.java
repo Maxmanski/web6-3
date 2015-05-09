@@ -2,10 +2,13 @@ package controllers;
 
 import at.ac.tuwien.big.we15.lab2.api.Avatar;
 import models.User;
+import play.api.mvc.Flash;
 import play.data.DynamicForm;
 import play.data.Form;
 import play.db.jpa.Transactional;
+import play.i18n.Messages;
 import play.mvc.Controller;
+import play.mvc.Http;
 import play.mvc.Result;
 import views.html.authentication;
 import play.cache.Cache;
@@ -13,7 +16,7 @@ import play.cache.Cache;
 public class Authentication extends Controller {
 
     public static Result authentication() {
-        return ok(authentication.render(play.data.Form.form(Login.class)));
+        return ok(authentication.render(play.data.Form.form(Login.class), flash("warning"), flash("error")));
     }
 
     @Transactional
@@ -22,17 +25,11 @@ public class Authentication extends Controller {
         Form<Login> loginForm = Form.form(Login.class).bindFromRequest();
 
         if(loginForm.hasErrors()){
-            System.out.println(loginForm.errors());
-            return ok(authentication.render(loginForm));
+            return ok(authentication.render(loginForm, flash("warning"), flash("error")));
         }
 
         Login login = loginForm.get();
         User usr = User.authenticate(login.username, login.password);
-
-        usr = new User("asdf", "asdf", "asdf", "20.04.1993", User.Gender.female, Avatar.ALDRICH_KILLIAN.getId(), "asdf");
-        if(Users.getUserByUsername(usr.getUsername()) == null){
-            usr.save();
-        }
 
         // Generate a unique ID
         String uuid=session("uuid");
@@ -45,15 +42,14 @@ public class Authentication extends Controller {
             session().put("username", usr.getUsername());
             return redirect(controllers.routes.Overview.jeopardy());
         }else {
-            flash("error", "Username and/or Password did not match");
-            return badRequest(authentication.render(loginForm));
+            return badRequest(authentication.render(loginForm, flash("warning"), Messages.get("error_invalidLogin")));
         }
     }
 
     public static Result logout(){
         session().clear();
         Cache.remove("game");
-        return ok(authentication.render(Form.form(Login.class)));
+        return ok(authentication.render(Form.form(Login.class), flash("warning"), flash("error")));
     }
 
     public static class Login{

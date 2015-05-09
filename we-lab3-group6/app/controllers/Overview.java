@@ -28,8 +28,14 @@ public class Overview extends Controller {
 
         String uuid = session().get("uuid");
         String username = session().get("username");
-        User user = Users.getUserByUsername(username);
+        User user = models.User.getUserByUsername(username);
 
+        if(user == null){
+            flash("error", Messages.get("error_sessionUserInvalid"));
+            return redirect(routes.Authentication.authentication());
+        }
+
+        // if no game has been started yet, a new one will be created
         JeopardyGame game;
         if((Cache.get(uuid + "game") == null) || !(Cache.get(uuid + "game") instanceof JeopardyGame)){
             game = factory.createGame(user);
@@ -38,12 +44,13 @@ public class Overview extends Controller {
             game = ((JeopardyGame)Cache.get(uuid + "game"));
         }
 
+        // if the game is over, a new one will be started
         if(game.isGameOver()){
             game = factory.createGame(user);
             Cache.set(uuid + "game", game);
         }
 
-        return ok(jeopardy.render(Messages.get("label_titleQuestionSelection"), game));
+        return ok(jeopardy.render(game, flash("warning"), flash("error")));
     }
 
 }

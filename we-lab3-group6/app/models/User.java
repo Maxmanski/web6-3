@@ -4,6 +4,7 @@ import at.ac.tuwien.big.we15.lab2.api.Avatar;
 import play.data.validation.Constraints;
 import play.data.validation.ValidationError;
 import play.db.ebean.Model;
+import play.db.jpa.Transactional;
 import play.i18n.Messages;
 
 import javax.persistence.Entity;
@@ -210,6 +211,11 @@ public class User extends Model implements at.ac.tuwien.big.we15.lab2.api.User {
     @Override
     public String toString(){
         return "User \"" + username + "\": Name: " + firstname + " " + lastname + ", PW: " + password + ", BDay: " + birthdate + ", Gender: " + gender + ", Avatar: " + avatarid;
+    }
+
+    @Transactional
+    public static User getUserByUsername(String username){
+        return User.find.where().eq("username", username).findUnique();
     }
 
 }

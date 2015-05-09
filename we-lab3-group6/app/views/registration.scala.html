@@ -1,4 +1,4 @@
-@(userForm: play.data.Form[models.User])
+@(userForm: play.data.Form[models.User], warning: String, error: String)
 @import at.ac.tuwien.big.we15.lab2.api.Avatar
 @import models.User
 @import play.i18n._
@@ -27,32 +27,46 @@
             <!-- Register section -->
             <h2 id="registerheading" class="accessibility">@Messages.get("label_registration")</h2>
 
-            @if(userForm.hasErrors){
-                <p>
-                    <ul>
-                        @for(entry <- userForm.errors.entrySet()){
-                            @for(error <- entry.getValue){
-                                <li>@error.message()</li>
-                            }
-                        }
-                    </ul>
-                </p>
+            @if(warning != null){
+                <p class="warning">@warning</p>
+            }
+
+            @if(error != null){
+                <p class="error">@error</p>
+            }
+
+            @if(userForm.hasGlobalErrors){
+                @for(error <- userForm.globalErrors()){
+                    <p class="error">Error: @error</p>
+                }
             }
 
             @helper.form(action = routes.Registration.register()) {
                 <fieldset>
                     <legend>@Messages.get("label_personalData")</legend>
+                    @for(error <- userForm("firstname").errors()){
+                        <p class="error">@error.message()</p>
+                    }
                     <label for="firstname">@Messages.get("label_firstname"):</label>
                     <input id="firstname" type="text" name="firstname"/>
 
+                    @for(error <- userForm("lastname").errors()){
+                        <p class="error">@error.message()</p>
+                    }
                     <label for="lastname">@Messages.get("label_lastname"):</label>
                     <input id="lastname" type="text" name="lastname"/>
 
+                    @for(error <- userForm("birthdate").errors()){
+                        <p class="error">@error.message()</p>
+                    }
                     <label for="birthdate">@Messages.get("label_birthday"):</label>
                     <input id="birthdate" type="date" name="birthdate"/>
                     <div id="error_msg_birthdate" class="hide" role="alert">
                         @Messages.get("error_birthdayMessage", "dd.mm.yyyy", "24.12.2010")</div>
 
+                    @for(error <- userForm("gender").errors()){
+                        <p class="error">@error.message()</p>
+                    }
                     <label>@Messages.get("label_gender"):</label>
                     <fieldset class="inputset">
                         <input type="radio" name="gender" id="male" value="male" checked="checked" />
@@ -62,9 +76,13 @@
                     </fieldset>
 
 
+
                 </fieldset>
                 <fieldset>
                     <legend>@Messages.get("label_userData")</legend>
+                    @for(error <- userForm("avatar").errors()){
+                        <p class="error">@error.message()</p>
+                    }
                     <label for="avatarid">@Messages.get("label_avatar"):</label>
                     <select id="avatarid" name="avatarid">
                         @for(avatar <- Avatar.values()){
@@ -72,13 +90,21 @@
                         }
                     </select>
 
+
+                    @for(error <- userForm("username").errors()){
+                        <p class="error">@error.message()</p>
+                    }
                     <label for="username">@Messages.get("label_username")*:</label>
                     <input id="username" type="text" required="required" pattern="\w{4,8}" name="username"/>
                     <div id="error_msg_username" class="hide" role="alert">@Messages.get("message_fieldRestrictionLengthUsername")</div>
 
+                    @for(error <- userForm("password").errors()){
+                        <p class="error">@error.message()</p>
+                    }
                     <label for="password">@Messages.get("label_password")*:</label>
                     <input id="password" type="password" required="required" pattern="\w{4,8}" name="password"/>
                     <div id="error_msg_password" class="hide" role="alert">@Messages.get("message_fieldRestrictionLengthPassword")</div>
+
                     <input class="greenlink formlink" type="submit" value="@Messages.get("label_register")" accesskey="s"/>
                     <p id="requiredhint">@Messages.get("message_mandatoryFields")</p>
                 </fieldset>

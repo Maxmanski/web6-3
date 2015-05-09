@@ -1,9 +1,11 @@
 package controllers;
 
 import at.ac.tuwien.big.we15.lab2.api.JeopardyGame;
+import models.User;
 import play.cache.Cache;
 import play.data.DynamicForm;
 import play.data.Form;
+import play.i18n.Messages;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Security;
@@ -27,6 +29,11 @@ public class Evaluation extends Controller {
 
     @Security.Authenticated(UserAuthenticator.class)
     public static Result evaluate(){
+        if(User.getUserByUsername(session("username")) == null){
+            flash("error", Messages.get("error_sessionUserInvalid"));
+            return redirect(routes.Authentication.authentication());
+        }
+
         JeopardyGame game = getGame();
 
         DynamicForm form = Form.form().bindFromRequest();
@@ -43,7 +50,7 @@ public class Evaluation extends Controller {
         }
 
         if(game == null){
-            flash("error", "Game could not be loaded from the cache - starting new one");
+            flash("error", Messages.get("error_loadingGameData"));
             return redirect(routes.Overview.jeopardy());
         }
 
@@ -51,7 +58,7 @@ public class Evaluation extends Controller {
         Cache.set(session("uuid") + "game", game);
 
         if(game.isGameOver()){
-            return ok(winner.render(game));
+            return ok(winner.render(game, flash("warning"), flash("error")));
         }
 
         return redirect(routes.Overview.jeopardy());

@@ -15,8 +15,3 @@ POST        /register            controllers.Registration.register()
 POST        /overview            controllers.Overview.jeopardy()
 POST        /question            controllers.Question.question()
 GET         /evaluation          controllers.Evaluation.evaluate()
-
-# routes zum testen, NACHER LOESCHEN
-GET         /overview            controllers.Overview.jeopardy()
-GET         /question            controllers.Question.question()
-GET         /list                controllers.Users.listAll()

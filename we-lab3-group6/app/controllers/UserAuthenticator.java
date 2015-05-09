@@ -5,7 +5,9 @@ import play.mvc.Result;
 import play.mvc.Security;
 
 /**
- * Created by maxmanski on 08.05.15.
+ * Class used for User Authentication Checks
+ *
+ * Redirects to the login page whenever an access violation occurs
  */
 public class UserAuthenticator extends Security.Authenticator {
     @Override

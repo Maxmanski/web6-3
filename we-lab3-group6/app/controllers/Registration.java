@@ -1,43 +1,40 @@
 package controllers;
 
 import models.User;
-import play.api.data.validation.ValidationError;
-import play.data.DynamicForm;
 import play.data.Form;
-import play.data.format.Formatters;
-import play.i18n.Messages;
+import play.data.validation.ValidationError;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.registration;
 
-import java.text.ParseException;
-import java.util.Locale;
+import java.util.List;
 
 public class Registration extends Controller {
 
     public static Result registration() {
         Form<models.User> userForm = Form.form(models.User.class);
-        return ok(registration.render(userForm));
+        return ok(registration.render(userForm, flash("warning"), flash("error")));
     }
 
     public static Result register(){
         Form<User> form = Form.form(User.class).bindFromRequest();
 
         if(form.hasErrors()){
-            for(String str: form.errors().keySet()){
-                System.out.println(form.errors().get(str));
-            }
-
             // there were errors in the form
-            return badRequest(registration.render(form));
+            return badRequest(registration.render(form, flash("warning"), flash("error")));
 
         }else if(form.get().validate() != null){
 
+            List<ValidationError> validationErrors = form.get().validate();
+            String errors = "";
             // the specified user was not valid
-            for(play.data.validation.ValidationError err: form.get().validate()){
-                form.reject(err);
+            for(int i=0; i<validationErrors.size(); i++){
+                errors += validationErrors.get(i).message();
+                if(i < (validationErrors.size() - 1)){
+                    errors += ", ";
+                }
             }
-            return badRequest(registration.render(form));
+            return badRequest(registration.render(form, flash("warning"), errors));
 
         }else{
 

@@ -1,4 +1,3 @@
-test=Hallo {0}, wie geht es dir heute?
 label_jeopardy=Jeopardy!
 label_jeopardy2=Jeopardy
 label_username=Benutzername
@@ -65,3 +64,8 @@ label_leader=Führender Spieler
 label_secondPlayer=Zweiter Spieler
 label_playerAvatar=Spieler-Avatar {0}
 label_winnerInfo=Winner Information
+
+error_sessionUserInvalid=Der User für die verwendete Session existiert nicht; bitte loggen Sie sich neu ein
+error_loadingGameData=Ein Fehler beim Lesen der Spieldaten ist aufgetreten - ein neues Spiel wurde begonnen
+error_noValidQuestion=Es wurde keine gültige Frage gewählt
+error_invalidLogin=Der Benutzername und/oder das Passwort sind falsch

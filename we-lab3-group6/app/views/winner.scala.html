@@ -1,4 +1,4 @@
-@(game: JeopardyGame)
+@(game: JeopardyGame, warning: String, error: String)
 @import at.ac.tuwien.big.we15.lab2.api.JeopardyGame
 @import play.i18n._;
 
@@ -24,6 +24,14 @@
     <div role="main">
         <section id="gameinfo" aria-labelledby="winnerinfoheading">
             <h2 id="winnerinfoheading" class="accessibility">@Messages.get("label_winnerInfo")</h2>
+            @if(warning != null){
+                <p class="warning">@warning</p>
+            }
+
+            @if(error != null){
+                <p class="error">@error</p>
+            }
+
             <p class="user-info positive-change">@Messages.get("message_rightAnswerUser"): @game.getHumanPlayer.getLatestProfitChange €</p>
             <p class="user-info negative-change">@Messages.get("message_wrongAnswerOpponent", game.getMarvin.getAvatar): -@game.getMarvinPlayer.getLatestProfitChange €</p>
             <section class="playerinfo leader" aria-labelledby="winnerannouncement">

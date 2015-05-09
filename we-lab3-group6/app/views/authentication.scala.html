@@ -1,6 +1,5 @@
-@(loginForm: play.data.Form[controllers.Authentication.Login])
+@(loginForm: play.data.Form[controllers.Authentication.Login], warning: String, error: String)
 @import play.i18n._
-@import play.cache._
 
 @main(Messages.get("label_login"), "login-page") {
     <a class="accessibility" href="#login">@Messages.get("label_toLogin")</a>
@@ -20,17 +19,20 @@
         <section id="login" aria-labelledby="loginheading">
             <h2 id="loginheading" class="accessibility">@Messages.get("label_login")</h2>
 
-            @if(loginForm.hasErrors){
-                <p>
-                    <ul>
-                        @for(entry <- loginForm.errors.entrySet()){
-                            @for(error <- entry.getValue){
-                                <li>@error.message()</li>
-                            }
-                        }
-                    </ul>
-                </p>
+            @if(warning != null){
+                <p class="warning">Warning: @warning</p>
             }
+
+            @if(error != null){
+                <p class="error">Error: @error</p>
+            }
+
+            @if(loginForm.hasGlobalErrors){
+                @for(error <- loginForm.globalErrors()){
+                    <p class="error">Error: @error</p>
+                }
+            }
+
             @helper.form(action = routes.Authentication.login()) {
                     <fieldset>
                         <legend id="logindata">@Messages.get("label_loginEn")</legend>

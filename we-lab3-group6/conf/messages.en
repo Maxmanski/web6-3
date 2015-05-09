@@ -1,4 +1,3 @@
-test=Hello {0}, how are you today?
 label_jeopardy=Jeopardy!
 label_jeopardy2=Jeopardy
 label_username=Username
@@ -65,3 +64,8 @@ label_leader=Leading Player
 label_secondPlayer=Second Player
 label_playerAvatar=Player Avatar {0}
 label_winnerInfo=Winner Information
+
+error_sessionUserInvalid=The User for this session does not exist, please log in again
+error_loadingGameData=Error loading Game data - a new Game has been started
+error_noValidQuestion=No valid question was chosen
+error_invalidLogin=Username and/or Password did not match

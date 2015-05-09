@@ -1,4 +1,4 @@
-@(message: String, game: at.ac.tuwien.big.we15.lab2.api.JeopardyGame, question: at.ac.tuwien.big.we15.lab2.api.Question)
+@(game: at.ac.tuwien.big.we15.lab2.api.JeopardyGame, question: at.ac.tuwien.big.we15.lab2.api.Question, warning: String, error: String)
 @import play.i18n._
 
 @main(Messages.get("label_titleQuestion"), "question-page") {
@@ -59,6 +59,15 @@
         <section id="question" aria-labelledby="questionheading">
             @helper.form(action = routes.Evaluation.evaluate()){
                 <h2 id="questionheading" class="accessibility">Frage</h2>
+
+                @if(warning != null){
+                    <p class="warning">@warning</p>
+                }
+
+                @if(error != null){
+                    <p class="error">@error</p>
+                }
+
                 <p id="questiontype">@Messages.get("message_categoryForValue", "TUWIEN", "300")</p>
                 <p id="questiontext">@question.getText()</p>
                 <ul id="answers">
