@@ -26,7 +26,7 @@ public class Users extends Controller{
     @Transactional
     public static User getUserByUsername(String username){
         EntityManager em = JPA.em();
-        return em.find(User.class, username);
+        return User.find.where().eq("username", username).findUnique();
     }
 
     @Transactional

@@ -6,6 +6,7 @@ import play.db.jpa.Transactional;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.authentication;
+import play.cache.Cache;
 
 public class Authentication extends Controller {
 
@@ -26,6 +27,13 @@ public class Authentication extends Controller {
         Login login = loginForm.get();
         User usr = User.authenticate(login.username, login.password);
 
+        // Generate a unique ID
+        String uuid=session("uuid");
+        if(uuid==null) {
+            uuid=java.util.UUID.randomUUID().toString();
+            session("uuid", uuid);
+        }
+
         if(usr != null){
             session().put("username", usr.getUsername());
             return redirect(controllers.routes.Overview.jeopardy());
@@ -37,6 +45,7 @@ public class Authentication extends Controller {
 
     public static Result logout(){
         session().clear();
+        Cache.remove("game");
         return ok(authentication.render(Form.form(Login.class)));
     }
 
