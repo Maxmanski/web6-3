@@ -4,25 +4,27 @@
 @import play.i18n._
 
 @main(Messages.get("label_login")) {
-    <a class="accessibility" href="#login">Zum Login springen</a>
-    <a class="accessibility" title="Klicke hier um dich zu registrieren" href="@routes.Registration.registration()" accesskey="r">@Messages.get("label_register")</a>
+    <a class="accessibility" href="#login">@Messages.get("label_toLogin")</a>
+    <a class="accessibility" title="@Messages.get("label_clickToRegister")" href="@routes.Registration.registration()" accesskey="r">@Messages.get("label_register")</a>
     <!-- Header -->
     <header role="banner" aria-labelledby="bannerheading">
         <h1 id="bannerheading">
             <span class="accessibility">
-                Business Informatics Group </span><span class="gametitle">@Messages.get("label_jeopardy")</span>
+                Business Informatics Group
+            </span>
+            <span class="gametitle">@Messages.get("label_jeopardy")</span>
         </h1>
     </header>
 
     <!-- Navigation -->
     <nav role="navigation" aria-labelledby="navheading">
-        <h2 id="navheading" class="accessibility">Navigation</h2>
+        <h2 id="navheading" class="accessibility">@Messages.get("label_navigation")</h2>
     </nav>
 
     <!-- Content -->
     <div role="main">
         <section id="login" aria-labelledby="loginheading">
-            <h2 id="loginheading" class="accessibility">Login</h2>
+            <h2 id="loginheading" class="accessibility">@Messages.get("label_login")</h2>
 
             @if(loginForm.hasErrors){
                 <p>
@@ -48,9 +50,9 @@
         </section>
             <!-- Register section -->
         <section id="registerforward" aria-labelledby="registerheading">
-            <h2 id="registerheading" class="accessibility">Registrierung</h2>
+            <h2 id="registerheading" class="accessibility">@Messages.get("label_registration")</h2>
             <p id="registerhint">@Messages.get("label_notRegistered")</p>
-            <a class="contentlink orangelink" title="Klicke hier um dich zu registrieren" href="@routes.Registration.registration()" accesskey="r">@Messages.get("label_toRegistration")</a>
+            <a class="contentlink orangelink" title="@Messages.get("label_clickToRegister")" href="@routes.Registration.registration()" accesskey="r">@Messages.get("label_toRegistration")</a>
         </section>
     </div>
 }

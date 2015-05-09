@@ -2,19 +2,20 @@
 @import play.i18n._
 
 @main("") {
-    <a class="accessibility" href="#questions">Zur Fragenauswahl springen</a>
+    <a class="accessibility" href="#questions">@Messages.get("label_goToQuestions")</a>
     <!-- Header -->
     <header role="banner" aria-labelledby="bannerheading">
         <h1 id="bannerheading">
-            <span class="accessibility">Business Informatics Group </span><span class="gametitle">@Messages.get("label_jeopardy")</span>
+            <span class="accessibility">Business Informatics Group </span>
+            <span class="gametitle">@Messages.get("label_jeopardy")</span>
         </h1>
     </header>
 
     <!-- Navigation -->
     <nav role="navigation" aria-labelledby="navheading">
-        <h2 id="navheading" class="accessibility">Navigation</h2>
+        <h2 id="navheading" class="accessibility">@Messages.get("label_navigation")</h2>
         <ul>
-            <li><a class="orangelink navigationlink" id="logoutlink" title="Klicke hier um dich abzumelden" href="@routes.Authentication.logout()" accesskey="l">@Messages.get("label_logout")</a></li>
+            <li><a class="orangelink navigationlink" id="logoutlink" title="@Messages.get("label_clickToLogout")" href="@routes.Authentication.logout()" accesskey="l">@Messages.get("label_logout")</a></li>
         </ul>
     </nav>
 
@@ -22,31 +23,31 @@
     <div role="main">
             <!-- info -->
         <section id="gameinfo" aria-labelledby="gameinfoinfoheading">
-            <h2 id="gameinfoinfoheading" class="accessibility">Spielinformationen</h2>
+            <h2 id="gameinfoinfoheading" class="accessibility">@Messages.get("label_gameInfo")</h2>
             <section id="firstplayer" class="playerinfo leader" aria-labelledby="firstplayerheading">
-                <h3 id="firstplayerheading" class="accessibility">Führender Spieler</h3>
-                <img class="avatar" src="@routes.Assets.at("images/avatar/black-widow_head.png")" alt="Spieler-Avatar Black Widow" />
+                <h3 id="firstplayerheading" class="accessibility">@Messages.get("label_leader")</h3>
+                <img class="avatar" src="@routes.Assets.at("images/avatar/black-widow_head.png")" alt="@Messages.get("label_playerAvatar", "Black Widow")" />
                 <table>
                     <tr>
-                        <th class="accessibility">Spielername</th>
+                        <th class="accessibility">@Messages.get("label_playerName")</th>
                         <td class="playername">@Messages.get("message_user", "Black Widow")</td>
                     </tr>
                     <tr>
-                        <th class="accessibility">Spielerpunkte</th>
+                        <th class="accessibility">@Messages.get("label_playerScore")</th>
                         <td class="playerpoints">2000 €</td>
                     </tr>
                 </table>
             </section>
             <section id="secondplayer" class="playerinfo" aria-labelledby="secondplayerheading">
-                <h3 id="secondplayerheading" class="accessibility">Zweiter Spieler</h3>
-                <img class="avatar" src="@routes.Assets.at("images/avatar/deadpool_head.png")" alt="Spieler-Avatar Deadpool" />
+                <h3 id="secondplayerheading" class="accessibility">@Messages.get("label_secondPlayer")</h3>
+                <img class="avatar" src="@routes.Assets.at("images/avatar/deadpool_head.png")" alt="@Messages.get("label_playerAvatar", "Deadpool")" />
                 <table>
                     <tr>
-                        <th class="accessibility">Spielername</th>
+                        <th class="accessibility">@Messages.get("label_playerName")</th>
                         <td class="playername">Deadpool</td>
                     </tr>
                     <tr>
-                        <th class="accessibility">Spielerpunkte</th>
+                        <th class="accessibility">@Messages.get("label_playerScore")</th>
                         <td class="playerpoints">400 €</td>
                     </tr>
                 </table>

@@ -209,7 +209,7 @@ public class User extends Model implements at.ac.tuwien.big.we15.lab2.api.User {
 
     @Override
     public String toString(){
-        return "User \"" + username + "\": " + firstname + " " + lastname + "; PW: " + password + ", BDay: " + birthdate + ", Gender: " + gender + ", Avatar: " + avatarid;
+        return "User \"" + username + "\": Name: " + firstname + " " + lastname + ", PW: " + password + ", BDay: " + birthdate + ", Gender: " + gender + ", Avatar: " + avatarid;
     }
 
 }
