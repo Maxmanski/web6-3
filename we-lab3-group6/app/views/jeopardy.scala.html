@@ -70,8 +70,8 @@
                         <section class="questioncategory" aria-labelledby="@category.getName()heading">
                             <h3 id="@category.getName()heading" class="tile category-title"><span class="accessibility">@Messages.get("label_category"): </span>@category.getName()</h3>
                             <ol class="category_questions">
-                            @for((question, index) <- category.getQuestions().zipWithIndex) {
-                                <li><input name="question_selection" id="question_@{index+1}" value="@question.getId" type="radio" /><label class="tile clickable" for="question_@{index+1}">€ @{question.getValue()*10}</label></li>
+                            @for(question <- category.getQuestions) {
+                                <li><input name="question_selection" id="question_@question.getId" value="@question.getId" type="radio" /><label class="tile clickable" for="question_@question.getId">€ @{question.getValue()*10}</label></li>
                             }
                             </ol>
                         </section>
