@@ -28,29 +28,29 @@
             <h2 id="gameinfoinfoheading" class="accessibility">@Messages.get("label_gameInfo")</h2>
             <section id="firstplayer" class="playerinfo leader" aria-labelledby="firstplayerheading">
                 <h3 id="firstplayerheading" class="accessibility">@Messages.get("label_leader")</h3>
-                <img class="avatar" src="@routes.Assets.at("images/avatar/black-widow_head.png")" alt="@Messages.get("label_playerAvatar", "Black Widow")" />
+                <img class="avatar" src="@routes.Assets.at("images/avatar/"+game.getLeader.getUser.getAvatar.getImageHead)" alt="@Messages.get("label_playerAvatar", game.getLeader.getUser.getName)" />
                 <table>
                     <tr>
                         <th class="accessibility">@Messages.get("label_playerName")</th>
-                        <td class="playername">@Messages.get("message_user", "Black Widow")</td>
+                        <td class="playername">@Messages.get("message_user", game.getLeader.getUser.getName)</td>
                     </tr>
                     <tr>
                         <th class="accessibility">@Messages.get("message_playerScore")</th>
-                        <td class="playerpoints">2000 €</td>
+                        <td class="playerpoints">@game.getLeader.getProfit €</td>
                     </tr>
                 </table>
             </section>
             <section id="secondplayer" class="playerinfo" aria-labelledby="secondplayerheading">
                 <h3 id="secondplayerheading" class="accessibility">@Messages.get("label_secondPlayer")</h3>
-                <img class="avatar" src="@routes.Assets.at("images/avatar/deadpool_head.png")" alt="@Messages.get("label_playerAvatar", "Deadpool")" />
+                <img class="avatar" src="@routes.Assets.at("images/avatar/"+game.getSecond.getUser.getAvatar.getImageHead)" alt="@Messages.get("label_playerAvatar", game.getSecond.getUser.getName)" />
                 <table>
                     <tr>
                         <th class="accessibility">@Messages.get("label_playerName")</th>
-                        <td class="playername">Deadpool</td>
+                        <td class="playername">@game.getSecond.getUser.getName</td>
                     </tr>
                     <tr>
                         <th class="accessibility">@Messages.get("label_playerScore")</th>
-                        <td class="playerpoints">400 €</td>
+                        <td class="playerpoints">@game.getSecond.getProfit €</td>
                     </tr>
                 </table>
             </section>
@@ -60,9 +60,9 @@
             <!-- Question -->
         <section id="question-selection" aria-labelledby="questionheading">
             <h2 id="questionheading" class="black accessibility">@Messages.get("label_jeopardy2")</h2>
-            <p class="user-info positive-change">@Messages.get("message_rightAnswerUser"): +1000 €</p>
-            <p class="user-info negative-change">@Messages.get("message_wrongAnswerOpponent", "Deadpool"): -500 €</p>
-            <p class="user-info">@Messages.get("message_aiQuestion", "Deadpool", "TUWIEN", "€ 1000")</p>
+            <p class="user-info positive-change">@Messages.get("message_rightAnswerUser"): + if(@game.getHumanPlayer.getChosenQuestion.getValue €</p>
+            <p class="user-info negative-change">@Messages.get("message_wrongAnswerOpponent", game.getMarvinPlayer.getUser.getName): - @game.getMarvinPlayer.getChosenQuestion.getValue €</p>
+            <p class="user-info">@Messages.get("message_aiQuestion", game.getMarvin.getName, game.getMarvinPlayer.getChosenQuestion.getCategory, "€ " + game.getMarvinPlayer.getChosenQuestion.getValue)</p>
             <form id="questionform" action="/question" method="post">
                 <fieldset>
                     <legend class="accessibility">@Messages.get("label_titleQuestionSelection")</legend>
