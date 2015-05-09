@@ -72,22 +72,29 @@
             <p class="user-info positive-change">@Messages.get("message_rightAnswerUser"): + (game.getHumanPlayer.getChosenQuestion == null) ? 0 : game.getHumanPlayer.getChosenQuestion.getValue  €</p>
             <p class="user-info negative-change">@Messages.get("message_wrongAnswerOpponent", game.getMarvinPlayer.getUser.getName): - (game.getMarvinPlayer.getChosenQuestion  == null) 0 : game.getMarvinPlayer.getChosenQuestion.getValue €</p>
             <p class="user-info">@Messages.get("message_aiQuestion", game.getMarvin.getName, "TU WIEN", "€ " + "1000")</p>
-            <form id="questionform" action="/question" method="post">
+            @helper.form(action = routes.Question.question()) {
                 <fieldset>
                     <legend class="accessibility">@Messages.get("label_titleQuestionSelection")</legend>
                     @for(category <- game.getCategories) {
                         <section class="questioncategory" aria-labelledby="@category.getName()heading">
-                            <h3 id="@category.getName()heading" class="tile category-title"><span class="accessibility">@Messages.get("label_category"): </span>@category.getName()</h3>
+                            <h3 id="@category.getName()heading" class="tile category-title"><span class="accessibility">@Messages.get("label_category")
+                                : </span> @category.getName()
+                            </h3>
                             <ol class="category_questions">
                             @for(question <- category.getQuestions) {
-                                <li><input @{if(game.hasBeenChosen(question)) "disabled=\"disabled\""} name="question_selection" id="question_@question.getId" value="@question.getId" type="radio" /><label class="tile clickable" for="question_@question.getId">€ @{question.getValue()*10}</label></li>
+                                <li><input @{
+                                    if(game.hasBeenChosen(question)) "disabled=\"disabled\""
+                                } name="question_selection" id="question_@question.getId" value="@question.getId" type="radio" /> <label class="tile clickable" for="question_@question.getId">€ @{
+                                    question.getValue() * 10
+                                }</label>
+                                </li>
                             }
                             </ol>
                         </section>
                     }
                 </fieldset>
                 <input class="greenlink formlink clickable" name="question_submit" id="next" type="submit" value="@Messages.get("label_choose")" accesskey="s" />
-            </form>
+            }
         </section>
 
         <section id="lastgame" aria-labelledby="lastgameheading">

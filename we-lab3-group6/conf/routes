@@ -15,3 +15,5 @@ POST        /register            controllers.Registration.register()
 POST        /overview            controllers.Overview.jeopardy()
 POST        /question            controllers.Question.question()
 GET         /evaluation          controllers.Evaluation.evaluate()
+
+GET         /overview            controllers.Overview.jeopardy()

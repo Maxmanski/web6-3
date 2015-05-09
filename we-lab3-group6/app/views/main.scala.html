@@ -1,5 +1,4 @@
 @(title: String, id: String)(content: Html)
-@import play.i18n._
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html>
@@ -16,6 +15,6 @@
         @content
 
         <!-- footer -->
-        <footer role="contentinfo">@Messages.get("label_copyright")</footer>
+        <footer role="contentinfo">@play.i18n.Messages.get("label_copyright")</footer>
     </body>
 </html>
