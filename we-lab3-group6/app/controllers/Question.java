@@ -2,7 +2,6 @@ package controllers;
 
 import at.ac.tuwien.big.we15.lab2.api.Category;
 import at.ac.tuwien.big.we15.lab2.api.JeopardyGame;
-import jdk.nashorn.internal.ir.ReturnNode;
 import play.cache.Cache;
 import play.data.DynamicForm;
 import play.data.Form;
