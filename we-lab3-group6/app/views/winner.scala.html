@@ -1,32 +1,33 @@
 @(message: String)
 @import play.i18n._
 
-@main("") {
-    <a class="accessibility" href="#winner">Zur Gewinnanzeige springen</a>
+@main(("Business Informatics Group Jeopardy! - " + Messages.get("label_titleWinnerNotification"))) {
+    <a class="accessibility" href="#winnerannouncement">@Messages.get("label_goToWinner")</a>
     <!-- Header -->
     <header role="banner" aria-labelledby="bannerheading">
         <h1 id="bannerheading">
-            <span class="accessibility">Business Informatics Group </span><span class="gametitle">@Messages.get("label_jeopardy")</span>
+            <span class="accessibility">Business Informatics Group </span>
+            <span class="gametitle">@Messages.get("label_jeopardy")</span>
         </h1>
     </header>
 
     <!-- Navigation -->
     <nav role="navigation" aria-labelledby="navheading">
-        <h2 id="navheading" class="accessibility">Navigation</h2>
+        <h2 id="navheading" class="accessibility">@Messages.get("label_navigation")</h2>
         <ul>
-            <li><a class="orangelink navigationlink" id="logoutlink" title="Klicke hier um dich abzumelden" href="@routes.Authentication.logout()" accesskey="l">Abmelden</a></li>
+            <li><a class="orangelink navigationlink" id="logoutlink" title="@Messages.get("label_clickToLogout")" href="@routes.Authentication.logout()" accesskey="l">@Messages.get("label_logout")</a></li>
         </ul>
     </nav>
 
     <!-- Content -->
     <div role="main">
         <section id="gameinfo" aria-labelledby="winnerinfoheading">
-            <h2 id="winnerinfoheading" class="accessibility">Gewinnerinformationen</h2>
+            <h2 id="winnerinfoheading" class="accessibility">@Messages.get("label_winnerInfo")</h2>
             <p class="user-info positive-change">@Messages.get("message_rightAnswerUser"): +1000 €</p>
             <p class="user-info negative-change">@Messages.get("message_wrongAnswerOpponent", "Deadpool"): -500 €</p>
             <section class="playerinfo leader" aria-labelledby="winnerannouncement">
                 <h3 id="winnerannouncement">@Messages.get("label_winner"): Black Widow</h3>
-                <img class="avatar" src="@routes.Assets.at("images/avatar/black-widow.png")" alt="Spieler-Avatar Black Widow" />
+                <img class="avatar" src="@routes.Assets.at("images/avatar/black-widow.png")" alt="@Messages.get("label_playerAvatar", "Black Widow")" />
                 <table>
                     <tr>
                         <th class="accessibility">@Messages.get("label_playerName")</th>
@@ -39,7 +40,7 @@
                 </table>
             </section>
             <section class="playerinfo" aria-labelledby="loserheading">
-                <h3 id="loserheading" class="accessibility">Verlierer: Deadpool</h3>
+                <h3 id="loserheading" class="accessibility">@Messages.get("label_loser"): Deadpool</h3>
                 <img class="avatar" src="@routes.Assets.at("images/avatar/deadpool_head.png")" alt="Spieler-Avatar Deadpool" />
                 <table>
                     <tr>
@@ -54,10 +55,10 @@
             </section>
         </section>
         <section id="newgame" aria-labelledby="newgameheading">
-            <h2 id="newgameheading" class="accessibility">Neues Spiel</h2>
-            <form action="/overview" method="post">
+            <h2 id="newgameheading" class="accessibility">@Messages.get("label_newGame")</h2>
+            @helper.form(action = routes.Overview.jeopardy()) {
                 <input class="clickable orangelink contentlink" id="new_game" type="submit" name="restart" value="@Messages.get("label_newGame")" />
-            </form>
+            }
         </section>
     </div>
 

@@ -3,7 +3,7 @@
 @import controllers.Authentication.Login
 @import play.i18n._
 
-@main(Messages.get("label_login")) {
+@main("Business Informatics Group Jeopardy! - " + Messages.get("label_login")) {
     <a class="accessibility" href="#login">@Messages.get("label_toLogin")</a>
     <a class="accessibility" title="@Messages.get("label_clickToRegister")" href="@routes.Registration.registration()" accesskey="r">@Messages.get("label_register")</a>
     <!-- Header -->
