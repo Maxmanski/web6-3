@@ -237,16 +237,17 @@
                         <p class="error">@error.message()</p>
                     }
                     <label for="username">@Messages.get("label_username")*:</label>
-                    <input id="username" type="text" required="required" pattern="\w{4,8}" name="username"/>
+                    <input id="username" type="text" name="username"/>
                     <div id="error_msg_username" class="hide" role="alert">@Messages.get("message_fieldRestrictionLengthUsername")</div>
 
                     @for(error <- userForm("password").errors()){
                         <p class="error">@error.message()</p>
                     }
                     <label for="password">@Messages.get("label_password")*:</label>
-                    <input id="password" type="password" required="required" pattern="\w{4,8}" name="password"/>
+                    <input id="password" type="password" name="password"/>
                     <div id="error_msg_password" class="hide" role="alert">@Messages.get("message_fieldRestrictionLengthPassword")</div>
 
+                    <!-- required="required" pattern="\w{4,8}"-->
                     <input class="greenlink formlink" type="submit" value="@Messages.get("label_register")" accesskey="s"/>
                     <p id="requiredhint">@Messages.get("message_mandatoryFields")</p>
                 </fieldset>
