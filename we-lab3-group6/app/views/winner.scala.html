@@ -2,6 +2,7 @@
 @import at.ac.tuwien.big.we15.lab2.api.JeopardyGame
 @import play.i18n._;
 
+
 @main(Messages.get("label_titleWinnerNotification"), "winner-page") {
     <a class="accessibility" href="#winnerannouncement">@Messages.get("label_goToWinner")</a>
     <!-- Header -->
@@ -31,11 +32,24 @@
             @if(error != null){
                 <p class="error">@error</p>
             }
-
-            <p class="user-info positive-change">@Messages.get("message_rightAnswerUser"): @{game.getHumanPlayer.getLatestProfitChange*10} €</p>
-            <p class="user-info negative-change">@Messages.get("message_wrongAnswerOpponent", game.getMarvin.getAvatar): -@{game.getMarvinPlayer.getLatestProfitChange*10} €</p>
+            @if(game.getHumanPlayer.getLatestProfitChange >0) {
+                <p class="user-info positive-change">@Messages.get("message_rightAnswerUser"): @{game.getHumanPlayer.getLatestProfitChange * 10} €</p>
+            }else{
+                <p class="user-info negative-change">@Messages.get("message_wrongAnswerUser"): @{game.getHumanPlayer.getLatestProfitChange*10} €</p>
+            }
+            @if(game.getMarvinPlayer.getLatestProfitChange >0) {
+                <p class="user-info negative-change">@Messages.get("message_rightAnswerOpponent", game.getMarvin.getAvatar.getName): @{game.getMarvinPlayer.getLatestProfitChange * 10} €</p>
+            }else {
+                <p class="user-info negative-change">@Messages.get("message_wrongAnswerOpponent", game.getMarvin.getAvatar.getName): @{game.getMarvinPlayer.getLatestProfitChange * 10} €</p>
+            }
             <section class="playerinfo leader" aria-labelledby="winnerannouncement">
-                <h3 id="winnerannouncement">@Messages.get("label_winner"): @game.getLeader.getUser.getAvatar</h3>
+                <h3 id="winnerannouncement">@Messages.get("label_winner"):
+                    @if(game.getLeader.getUser.getAvatar.getName=="") {
+                        session.get("username")
+                    }else{
+                        @game.getLeader.getUser.getAvatar.getName
+                    }
+                </h3>
                 <img class="avatar" src="@routes.Assets.at("images/avatar/"+game.getLeader.getUser.getAvatar.getImageFull)" alt="@Messages.get("label_playerAvatar", game.getLeader.getUser.getAvatar.getName)" />
                 <table>
                     <tr>

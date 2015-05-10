@@ -1,6 +1,7 @@
-@(game: JeopardyGame, warning: String, error: String)
+@(game: JeopardyGame, warning: String, error: String, questionValue: String, questionCategory: String)
 @import play.i18n._
 @import at.ac.tuwien.big.we15.lab2.api.JeopardyGame;
+@import play.mvc.Http.Session;
 
 @main(Messages.get("label_titleQuestionSelection"), "selection-page") {
     <a class="accessibility" href="#question-selection">@Messages.get("label_goToQuestions")</a>
@@ -69,29 +70,35 @@
                 <p class="error">@error</p>
             }
 
-            @if(game.getHumanPlayer.getChosenQuestion == null){
+            @if(game.getHumanPlayer.getLatestProfitChange == null){
                 <p class="user-info"> Du hast noch nicht geantwortet
             }else{
                 @if(game.getHumanPlayer.getLatestProfitChange >=0){
-                    < class="user-info positive-change">@Messages.get("message_rightAnswerUser"): + game.getHumanPlayer.getChosenQuestion == null ? 0 : game.getHumanPlayer.getChosenQuestion.getValue  €
+                    <p class="user-info positive-change">@Messages.get("message_rightAnswerUser") : @{game.getHumanPlayer.getLatestProfitChange * 10}  €
                 }else{
-                    < class="user-info negative-change">@Messages.get("message_wrongAnswerOpponent", game.getHumanPlayer.getUser.getName): - game.getHumanPlayer.getChosenQuestion  == null ? 0 : game.getHumanPlayer.getChosenQuestion.getValue €
+                    <p class="user-info negative-change">@Messages.get("message_wrongAnswerUser") : @{game.getHumanPlayer.getLatestProfitChange * 10} €
                 }
             }
             </p>
-            @if(game.getMarvinPlayer.getChosenQuestion == null){
+            @if(game.getMarvinPlayer.getLatestProfitChange == null){
                 <p class="user-info"> @game.getMarvinPlayer.getUser.getName hat noch nicht geantwortet
+
             }else{
                 @if(game.getMarvinPlayer.getLatestProfitChange >=0){
-                    < class="user-info positive-change">@Messages.get("message_rightAnswerUser"): + game.getMarvinPlayer.getChosenQuestion == null ? 0 : game.getMarvinPlayer.getChosenQuestion.getValue  €
+                    <p class="user-info positive-change">@Messages.get("message_rightAnswerOpponent", game.getMarvin.getAvatar.getName): @{game.getMarvinPlayer.getLatestProfitChange * 10}  €
                 }else{
-                    < class="user-info negative-change">@Messages.get("message_wrongAnswerOpponent", game.getMarvinPlayer.getUser.getName): - game.getMarvinPlayer.getChosenQuestion  == null ? 0 : game.getMarvinPlayer.getChosenQuestion.getValue €
+                    <p class="user-info negative-change">@Messages.get("message_wrongAnswerOpponent", game.getMarvin.getAvatar.getName): @{game.getMarvinPlayer.getLatestProfitChange * 10} €
                 }
             }
             </p>
-            <p class="user-info">@Messages.get("message_aiQuestion", game.getMarvin.getName,
-                game.getMarvinPlayer.getChosenQuestion == null ? "keine Frage gewählt" : game.getMarvinPlayer.getChosenQuestion.getCategory.getName, " " +
-                        game.getMarvinPlayer.getChosenQuestion == null ? "0" : game.getMarvinPlayer.getChosenQuestion.getValue)</p>
+            @if(game.getMarvinPlayer.getLatestProfitChange == null){
+                <p class="user-info"> @Messages.get("message_aiQuestion", game.getMarvin.getAvatar.getName, "keine Frage gewählt", "0")
+            }else{
+                <p class="user-info">@Messages.get("message_aiQuestion", game.getMarvin.getAvatar.getName, questionValue, questionCategory)
+
+            }
+
+            </p>
             @helper.form(action = routes.Question.question()) {
                 <fieldset>
                     <legend class="accessibility">@Messages.get("label_titleQuestionSelection")</legend>

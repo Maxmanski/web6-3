@@ -39,7 +39,7 @@ public class Authentication extends Controller {
         }
 
         if(usr != null){
-            session().put("username", usr.getUsername());
+            session("username", usr.getUsername());
             return redirect(controllers.routes.Overview.jeopardy());
         }else {
             return badRequest(authentication.render(loginForm, flash("warning"), Messages.get("error_invalidLogin")));

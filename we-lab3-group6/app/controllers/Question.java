@@ -59,6 +59,8 @@ public class Question extends Controller {
                 return redirect(routes.Overview.jeopardy());
 
             }
+            session("questionCategory", game.getMarvinPlayer().getChosenQuestion().getCategory().getName());
+            session("questionValue",  game.getMarvinPlayer().getChosenQuestion().getValue()*10+"");
 
             Cache.set(uuid + "game", game);
             return ok(question.render(game, q, flash("warning"), flash("error")));

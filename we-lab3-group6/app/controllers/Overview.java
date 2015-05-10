@@ -50,7 +50,7 @@ public class Overview extends Controller {
             Cache.set(uuid + "game", game);
         }
 
-        return ok(jeopardy.render(game, flash("warning"), flash("error")));
+        return ok(jeopardy.render(game, flash("warning"), flash("error"), session("questionValue"),session("questionCategory")));
     }
 
 }
