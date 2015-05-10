@@ -32,8 +32,8 @@
                 <p class="error">@error</p>
             }
 
-            <p class="user-info positive-change">@Messages.get("message_rightAnswerUser"): @game.getHumanPlayer.getLatestProfitChange €</p>
-            <p class="user-info negative-change">@Messages.get("message_wrongAnswerOpponent", game.getMarvin.getAvatar): -@game.getMarvinPlayer.getLatestProfitChange €</p>
+            <p class="user-info positive-change">@Messages.get("message_rightAnswerUser"): @{game.getHumanPlayer.getLatestProfitChange*10} €</p>
+            <p class="user-info negative-change">@Messages.get("message_wrongAnswerOpponent", game.getMarvin.getAvatar): -@{game.getMarvinPlayer.getLatestProfitChange*10} €</p>
             <section class="playerinfo leader" aria-labelledby="winnerannouncement">
                 <h3 id="winnerannouncement">@Messages.get("label_winner"): @game.getLeader.getUser.getAvatar</h3>
                 <img class="avatar" src="@routes.Assets.at("images/avatar/"+game.getLeader.getUser.getAvatar.getImageFull)" alt="@Messages.get("label_playerAvatar", game.getLeader.getUser.getAvatar.getName)" />
@@ -44,7 +44,7 @@
                     </tr>
                     <tr>
                         <th class="accessibility">@Messages.get("label_playerScore")</th>
-                        <td class="playerpoints">@game.getLeader.getProfit</td>
+                        <td class="playerpoints">€ @{game.getLeader.getProfit*10}</td>
                     </tr>
                 </table>
             </section>
@@ -58,7 +58,7 @@
                     </tr>
                     <tr>
                         <th class="accessibility">@Messages.get("label_playerScore")</th>
-                        <td class="playerpoints">€ @game.getLoser.getProfit</td>
+                        <td class="playerpoints">€ @{game.getLoser.getProfit*10}</td>
                     </tr>
                 </table>
             </section>
