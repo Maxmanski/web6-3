@@ -27,7 +27,7 @@ public class Overview extends Controller {
         JeopardyFactory factory = new PlayJeopardyFactory(filepath);
 
         String uuid = session().get("uuid");
-        String username = session().get("username");
+        String username = session("username");
         User user = models.User.getUserByUsername(username);
 
         if(user == null){
@@ -49,6 +49,8 @@ public class Overview extends Controller {
             game = factory.createGame(user);
             Cache.set(uuid + "game", game);
         }
+
+        game.getHumanPlayer().getUser().setName(username+ " (Du)");
 
         return ok(jeopardy.render(game, flash("warning"), flash("error"), session("questionValue"),session("questionCategory")));
     }
