@@ -1,7 +1,51 @@
 @(game: at.ac.tuwien.big.we15.lab2.api.JeopardyGame, question: at.ac.tuwien.big.we15.lab2.api.Question, warning: String, error: String)
 @import play.i18n._
 
-@main(Messages.get("label_titleQuestion"), "question-page") {
+@scripts = {
+    <script type="text/javascript">
+    //<![CDATA[
+
+    // initialize time
+    $(document).ready(function() {
+        var maxtime = 30;
+        var hiddenInput = $("#timeleftvalue");
+        var meter = $("#timer meter");
+        var timeleft = $("#timeleft");
+
+        hiddenInput.val(maxtime);
+        meter.val(maxtime);
+        meter.attr('max', maxtime);
+        meter.attr('low', maxtime/100*20);
+        timeleft.text(secToMMSS(maxtime));
+    });
+
+        // update time
+    function timeStep() {
+        var hiddenInput = $("#timeleftvalue");
+        var meter = $("#timer meter");
+        var timeleft = $("#timeleft");
+
+        var value = $("#timeleftvalue").val();
+        if(value > 0) {
+            value = value - 1;
+        }
+
+        hiddenInput.val(value);
+        meter.val(value);
+        timeleft.text(secToMMSS(value));
+
+        if(value <= 0) {
+            $('#questionform').submit();
+        }
+    }
+
+    window.setInterval(timeStep, 1000);
+
+    //]]>
+    </script>
+}
+
+@main(Messages.get("label_titleQuestion"), "question-page", scripts) {
     <a class="accessibility" href="#questions">@Messages.get("label_goToQuestions")</a>
     <!-- Header -->
     <header role="banner" aria-labelledby="bannerheading">
@@ -87,46 +131,6 @@
         </section>
     </div>
 
-    <script type="text/javascript">
-    //<![CDATA[
 
-    // initialize time
-    $(document).ready(function() {
-        var maxtime = 30;
-        var hiddenInput = $("#timeleftvalue");
-        var meter = $("#timer meter");
-        var timeleft = $("#timeleft");
-
-        hiddenInput.val(maxtime);
-        meter.val(maxtime);
-        meter.attr('max', maxtime);
-        meter.attr('low', maxtime/100*20);
-        timeleft.text(secToMMSS(maxtime));
-        });
-
-        // update time
-        function timeStep() {
-        var hiddenInput = $("#timeleftvalue");
-        var meter = $("#timer meter");
-        var timeleft = $("#timeleft");
-
-        var value = $("#timeleftvalue").val();
-        if(value > 0) {
-        value = value - 1;
-        }
-
-        hiddenInput.val(value);
-        meter.val(value);
-        timeleft.text(secToMMSS(value));
-
-        if(value <= 0) {
-        $('#questionform').submit();
-        }
-    }
-
-    window.setInterval(timeStep, 1000);
-
-    //]]>
-    </script>
 
 }

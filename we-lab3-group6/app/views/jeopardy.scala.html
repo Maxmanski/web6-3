@@ -3,7 +3,31 @@
 @import at.ac.tuwien.big.we15.lab2.api.JeopardyGame;
 @import play.mvc.Http.Session;
 
-@main(Messages.get("label_titleQuestionSelection"), "selection-page") {
+
+@scripts = {
+    <script type="text/javascript">
+    //<![CDATA[
+
+    // initialize time
+    $(document).ready(function() {
+        // set last game
+        if(supportsLocalStorage()) {
+            var lastGameMillis = parseInt(localStorage['lastGame']);
+            if(!isNaN(parseInt(localStorage['lastGame']))){
+                var lastGame = new Date(lastGameMillis);
+                $("#lastgame p").replaceWith('<p>@Messages.get("message_lastGame2") <time datetime="'
+                    + lastGame.toUTCString()
+                    + '">'
+                    + lastGame.toLocaleString()
+                    + '</time></p>');
+            }
+        }
+    });
+    //]]>
+    </script>
+}
+
+@main(Messages.get("label_titleQuestionSelection"), "selection-page", scripts) {
     <a class="accessibility" href="#question-selection">@Messages.get("label_goToQuestions")</a>
     <!-- Header -->
     <header role="banner" aria-labelledby="bannerheading">
@@ -33,7 +57,7 @@
                 <table>
                     <tr>
                         <th class="accessibility">@Messages.get("label_playerName")</th>
-                        <td class="playername">game.getLeader.getUser.getName</td>
+                        <td class="playername">@game.getLeader.getUser.getName</td>
                     </tr>
                     <tr>
                         <th class="accessibility">@Messages.get("message_playerScore")</th>
@@ -129,26 +153,5 @@
             <p>@Messages.get("message_lastGame", "-")</p>
         </section>
         </div>
-
-    <script type="text/javascript">
-    //<![CDATA[
-
-    // initialize time
-    $(document).ready(function() {
-        // set last game
-        if(supportsLocalStorage()) {
-        var lastGameMillis = parseInt(localStorage['lastGame'])
-            if(!isNaN(parseInt(localStorage['lastGame']))){
-                var lastGame = new Date(lastGameMillis);
-                $("#lastgame p").replaceWith('<p>@Messages.get("message_lastGame2") <time datetime="'
-                + lastGame.toUTCString()
-                + '">'
-                + lastGame.toLocaleString()
-                + '</time></p>')
-            }
-        }
-    });
-    //]]>
-    </script>
 
 }

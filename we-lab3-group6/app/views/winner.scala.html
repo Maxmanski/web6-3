@@ -2,8 +2,18 @@
 @import at.ac.tuwien.big.we15.lab2.api.JeopardyGame
 @import play.i18n._;
 
-
-@main(Messages.get("label_titleWinnerNotification"), "winner-page") {
+    @scripts = {
+        <script type="text/javascript">
+        //<![CDATA[
+        $(document).ready(function(){
+            if(supportsLocalStorage()){
+                localStorage["lastGame"] = new Date().getTime();
+            }
+        });
+        //]]>
+        </script>
+    }
+@main(Messages.get("label_titleWinnerNotification"), "winner-page", scripts) {
     <a class="accessibility" href="#winnerannouncement">@Messages.get("label_goToWinner")</a>
     <!-- Header -->
     <header role="banner" aria-labelledby="bannerheading">
@@ -80,14 +90,6 @@
         </section>
     </div>
 
-    <script type="text/javascript">
-    //<![CDATA[
-    $(document).ready(function(){
-            if(supportsLocalStorage()){
-                localStorage["lastGame"] = new Date().getTime();
-            }
-        });
-    //]]>
-    </script>
+
 
 }
